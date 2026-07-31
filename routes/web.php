@@ -3,6 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'index']);
+Route::get('/inicio', fn () => 'inicio :: '.auth()->id())->middleware('auth')->name('inicio');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
