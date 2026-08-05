@@ -8,6 +8,11 @@
 </head>
 <body class="min-h-screen bg-white overflow-hidden">
 
+    @if ($message = session()->get('message'))
+        <div>{{ $message }}</div>
+        <br>
+    @endif
+
     <div class="flex h-screen">
 
        <div class="w-full md:w-1/2 lg:w-1/2 bg-green-100 flex items-center justify-center p-8">

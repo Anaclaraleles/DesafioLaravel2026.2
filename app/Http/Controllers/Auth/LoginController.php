@@ -20,7 +20,7 @@ class LoginController extends Controller
     public function login(MakeLoginRequest $request)
     {
 
-         if ($request->attempt()) {
+        if ($request->attempt()) {
             return to_route('inicio');
         }
 

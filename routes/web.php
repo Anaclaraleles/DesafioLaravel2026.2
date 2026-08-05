@@ -3,23 +3,36 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'index']);
-Route::get('/inicio', fn () => 'inicio :: '.auth()->id())->middleware('auth')->name('inicio');
+use App\Http\Middleware\User;
+use App\Http\Middleware\Admin;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware('auth')->group(function (): void {
+    Route::middleware(User::class)->group(function (): void {
+        Route::prefix('user')->group(function (): void {
+            Route::get('/login', [LoginController::class, 'index'])->name('login');
+            Route::post('/login', [LoginController::class, 'login']);
+            Route::get('/inicio', function (): \Illuminate\View\View {
+                return view('inicio');
+            })->name('inicio');
+        });
+    });
+});
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware('auth')->group(function (): void {
+    Route::middleware(Admin::class)->group(function (): void {
+        Route::prefix('admin')->group(function (): void {
+            Route::get('/login', [LoginController::class, 'index'])->name('login');
+            Route::post('/login', [LoginController::class, 'login']);
+            Route::get('/inicio', function (): \Illuminate\View\View {
+                return view('admin.inicio');
+            })->name('admin.inicio');
+        });
+    });
 });
 
 require __DIR__.'/auth.php';
