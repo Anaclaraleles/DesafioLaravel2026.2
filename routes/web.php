@@ -21,6 +21,12 @@ Route::middleware('auth')->group(function (): void {
             Route::get('/inicio', function (): \Illuminate\View\View {
                 return view('inicio');
             })->name('inicio');
+
+            // Placeholders temporários
+            Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('user.usuarios');
+            Route::get('/produtos', fn () => 'Gerenciar Produtos (em construção)')->name('user.produtos');
+            Route::get('/compras', fn () => 'Histórico de compras (em construção)')->name('user.compras');
+            Route::get('/vendas', fn () => 'Histórico de vendas (em construção)')->name('user.vendas');
         });
     });
 });
@@ -32,6 +38,12 @@ Route::middleware('auth')->group(function (): void {
             Route::get('/inicio', function (): \Illuminate\View\View {
                 return view('admin.inicio');
             })->name('admin.inicio');
+
+            // Placeholders temporários
+            Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('admin.usuarios');
+            Route::get('/produtos', fn () => 'Gerenciar Produtos (em construção)')->name('admin.produtos');
+            Route::get('/admins', fn () => 'Gerenciar Admins (em construção)')->name('admin.admins');
+            Route::get('/vendas', fn () => 'Histórico de vendas (em construção)')->name('admin.vendas');
         });
     });
 });
