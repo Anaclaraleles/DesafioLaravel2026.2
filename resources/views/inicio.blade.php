@@ -19,6 +19,10 @@
             @endforeach
         </div>
 
+        <div class="p-4">
+            {{ $products->links('vendor.pagination.custom-pagination') }}
+        </div>
+
     </main>
 
 </body>

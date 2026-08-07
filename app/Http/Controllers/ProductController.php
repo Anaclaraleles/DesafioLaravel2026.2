@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
      public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(5);
 
         return view('admin.inicio', compact('products'));
     }
@@ -27,6 +27,8 @@ class ProductController extends Controller
     {
         Product::query()->create($request->validated());
 
-        return to_route('inicio');
+        return $user->role === 'admin'
+            ? to_route('admin.inicio')
+            : to_route('user.inicio');
     }
 }
