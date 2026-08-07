@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function (): void {
             Route::get('/inicio', [ProductController::class, 'index'])->name('user.inicio');
             Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
             Route::post('/products/create', [ProductController::class, 'store']);
+            Route::any('/products/search', [ProductController::class, 'search'])->name('user.products.search');
 
             // Placeholders temporários
             Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('user.usuarios');
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function (): void {
             Route::get('/inicio', [ProductController::class, 'index'])->name('admin.inicio');
             Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
             Route::post('/products/create', [ProductController::class, 'store']);
+            Route::any('/products/search', [ProductController::class, 'search'])->name('admin.products.search');
 
 
             // Placeholders temporários

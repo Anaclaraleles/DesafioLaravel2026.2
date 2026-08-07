@@ -13,15 +13,19 @@
     <main class="ml-64 p-8">
         <h1 class="text-2xl font-bold text-gray-800">Pagina de produtos</h1>
 
+        <x-search-bar route="admin.products.search" placeholder="Buscar produtos..." />
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($products as $product)
                 <x-product-card :product="$product" />
             @endforeach
         </div>
 
-         <div class="p-4">
+        @if (isset($filters))
+            {{ $products->appends($filters)->links() }}
+        @else
             {{ $products->links() }}
-        </div>
+        @endif
 
     </main>
 

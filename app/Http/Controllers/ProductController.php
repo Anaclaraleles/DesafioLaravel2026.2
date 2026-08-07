@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
      public function index()
     {
-        $products = Product::paginate(5);
+        $products = Product::paginate(6);
 
-        return view('admin.inicio', compact('products'));
+        $view = auth()->user()->role === 'admin' ? 'admin.inicio' : 'inicio';
+
+        return view($view, compact('products'));
     }
 
     public function create()
@@ -30,5 +33,18 @@ class ProductController extends Controller
         return $user->role === 'admin'
             ? to_route('admin.inicio')
             : to_route('user.inicio');
+    }
+
+    public function search(Request $request)
+    {
+        $filters = $request->except('_token');
+
+        $products = Product::where('name', 'LIKE', "%{$request->search}%")
+            ->orWhere('category', 'LIKE', "%{$request->search}%")
+            ->paginate(6);
+
+        $view = auth()->user()->role === 'admin' ? 'admin.inicio' : 'inicio';
+
+        return view($view, compact('products', 'filters'));
     }
 }
