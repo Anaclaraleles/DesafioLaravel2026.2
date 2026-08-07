@@ -10,7 +10,7 @@
             ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'admin.vendas', 'icon' => 'arrow-trending-up'],
         ]
         : [
-            ['key' => 'inicio', 'label' => 'Início', 'route' => 'inicio', 'icon' => 'home'],
+            ['key' => 'inicio', 'label' => 'Início', 'route' => 'user.inicio', 'icon' => 'home'],
             ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'user.usuarios', 'icon' => 'users'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'user.produtos', 'icon' => 'cube'],
             ['key' => 'compras', 'label' => 'Histórico de compras', 'route' => 'user.compras', 'icon' => 'shopping-cart'],

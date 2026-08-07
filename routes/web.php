@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\ProductController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,10 +19,7 @@ Route::middleware('auth')->group(function (): void {
     Route::middleware(User::class)->group(function (): void {
         Route::prefix('user')->group(function (): void {
             Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout');
-            Route::get('/inicio', function (): \Illuminate\View\View {
-                return view('inicio');
-            })->name('inicio');
-
+            Route::get('/inicio', [ProductController::class, 'index'])->name('user.inicio');
             Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
             Route::post('/products/create', [ProductController::class, 'store']);
 
@@ -39,10 +36,7 @@ Route::middleware('auth')->group(function (): void {
     Route::middleware(Admin::class)->group(function (): void {
         Route::prefix('admin')->group(function (): void {
             Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
-            Route::get('/inicio', function (): \Illuminate\View\View {
-                return view('admin.inicio');
-            })->name('admin.inicio');
-
+            Route::get('/inicio', [ProductController::class, 'index'])->name('admin.inicio');
             Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
             Route::post('/products/create', [ProductController::class, 'store']);
 

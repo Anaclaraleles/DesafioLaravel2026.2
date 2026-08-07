@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 
-class Product extends Controller
+class ProductController extends Controller
 {
+     public function index()
+    {
+        $products = Product::all();
+
+        return view('admin.inicio', compact('products'));
+    }
+
     public function create()
     {
         return view('products.create');
