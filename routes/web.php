@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,9 @@ Route::middleware('auth')->group(function (): void {
                 return view('inicio');
             })->name('inicio');
 
+            Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+            Route::post('/products/create', [ProductController::class, 'store']);
+
             // Placeholders temporários
             Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('user.usuarios');
             Route::get('/produtos', fn () => 'Gerenciar Produtos (em construção)')->name('user.produtos');
@@ -38,6 +42,10 @@ Route::middleware('auth')->group(function (): void {
             Route::get('/inicio', function (): \Illuminate\View\View {
                 return view('admin.inicio');
             })->name('admin.inicio');
+
+            Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+            Route::post('/products/create', [ProductController::class, 'store']);
+
 
             // Placeholders temporários
             Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('admin.usuarios');

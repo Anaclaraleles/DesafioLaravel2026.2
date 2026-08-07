@@ -23,17 +23,17 @@ class UserFactory extends Factory
      */
    public function definition(): array
     {
-    return [
-        'name' => fake()->name(),
-        'email' => fake()->unique()->safeEmail(),
-        'password' => static::$password ??= Hash::make('password'),
-        'cpf' => fake()->unique()->numerify('###########'), // 11 dígitos
-        'phone' => fake()->numerify('###########'),
-        'birth_date' => fake()->date('Y-m-d', '-18 years'),
-        'balance' => fake()->randomFloat(2, 0, 1000),
-        'photo' => null,
-        'role' => 'user',
-    ];
+        return [
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'password' => static::$password ??= Hash::make('password'),
+            'cpf' => fake()->unique()->numerify('###########'), // 11 dígitos
+            'phone' => fake()->numerify('###########'),
+            'birth_date' => fake()->date('Y-m-d', '-18 years'),
+            'balance' => fake()->randomFloat(2, 0, 1000),
+            'photo' => null,
+            'role' => 'user',
+        ];
     }
 
     /**
