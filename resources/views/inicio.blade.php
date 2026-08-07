@@ -10,18 +10,17 @@
 
     <x-sidebar active="inicio" />
 
-    <main class="ml-64 p-8">
-        <h1 class="text-2xl font-bold text-gray-800">Pagina de produtos</h1>
+    <main class="ml-0 sm:ml-64 p-4 sm:p-8">
+        <h1 class="text-2xl font-bold text-[#4E6E6E] text-center my-8">Nossos Produtos</h1>
 
         <x-search-bar route="user.products.search" placeholder="Buscar produtos..." />
-
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($products as $product)
                 <x-product-card :product="$product" />
             @endforeach
         </div>
 
-        <div class="p-4">
+        <div class="mt-8 flex justify-center">
             {{ $products->links() }}
         </div>
 
