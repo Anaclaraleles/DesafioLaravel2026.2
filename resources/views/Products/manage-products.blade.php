@@ -6,10 +6,12 @@
             <p class="text-sm text-[#8FA6A3]">{{ $products->total() }} produtos encontrados</p>
         </div>
 
-        <a href="{{ route('admin.inicio') }}" class="inline-flex items-center gap-2 bg-[#4E6E6E] hover:bg-[#3a5555] text-white font-medium px-5 py-3 rounded-lg transition">
-            <x-heroicon-o-plus class="w-5 h-5" />
-            Adicionar Produto
-        </a>
+        @unless (auth()->user()->role === 'admin')
+            <a href="{{ route('products.create') }}" class="inline-flex items-center gap-2 bg-[#4E6E6E] hover:bg-[#3a5555] text-white font-medium px-5 py-3 rounded-lg transition">
+                <x-heroicon-o-plus class="w-5 h-5" />
+                Adicionar Produto
+            </a>
+        @endunless
     </div>
 
     <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
@@ -23,8 +25,10 @@
             <thead class="bg-[#4E6E6E]">
                 <tr>
                     <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Foto</th>
                     <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Nome</th>
                     <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Categoria</th>
+                    <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Preço</th>
                     <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Usuário</th>
                     <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Ações</th>
                 </tr>
@@ -33,18 +37,22 @@
                 @forelse ($products as $product)
                     <tr class="hover:bg-gray-50 transition">
                         <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $product->id }}</td>
+                        <td class="px-6 py-4 text-center">
+                            <img src="{{ asset('storage/' . $product->photo) }}" alt="{{ $product->name }}" class="w-12 h-12 object-cover rounded-md mx-auto">
+                        </td>
                         <td class="px-6 py-4 text-center text-sm text-gray-700">{{ $product->name }}</td>
                         <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $product->category }}</td>
+                        <td class="px-6 py-4 text-center text-sm text-gray-700">R$ {{ number_format($product->price, 2, ',', '.') }}</td>
                         <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $product->user->name }}</td>
                         <td class="px-6 py-4">
                             <div class="flex items-center justify-center gap-3">
-                                <a href="{{ route('admin.inicio', $product) }}" class="text-blue-500 hover:text-blue-600" title="Ver">
-                                    <x-heroicon-o-eye class="w-5 h-5" />
-                                </a>
-                                <a href="{{ route('admin.inicio', $product) }}" class="text-yellow-500 hover:text-yellow-500" title="Editar">
+                                <a href="{{ route('products.edit', $product) }}" class="text-yellow-500 hover:text-yellow-500" title="Editar">
                                     <x-heroicon-o-pencil-square class="w-5 h-5" />
                                 </a>
-                                <form action="{{ route('admin.inicio', $product) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este produto?');">
+                                <form action="{{ route('products.destroy', $product) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este produto?');">
+                                    @csrf
+                                    @method('DELETE')
+
                                     <button type="submit" class="text-red-500 hover:text-red-700" title="Excluir">
                                         <x-heroicon-o-trash class="w-5 h-5" />
                                     </button>

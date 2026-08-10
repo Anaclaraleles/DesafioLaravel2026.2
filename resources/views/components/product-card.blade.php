@@ -2,7 +2,7 @@
 
 <div class="w-full max-w-sm bg-white p-6 border border-gray-200 rounded-2xl shadow-lg shadow-[#6B5744] text-center">
     <a href="#">
-        <img class="rounded-lg mb-4 mx-auto" src="{{ $product->photo }}" alt="{{ $product->name }}" />
+        <img class="rounded-lg mb-4 mx-auto" src="{{ asset('storage/' . $product->photo) }}" alt="{{ $product->name }}" />
     </a>
     <div>
         <a href="#">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,11 +29,47 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        Product::query()->create($request->validated());
+        $data = $request->validated();
 
-        return $user->role === 'admin'
-            ? to_route('admin.inicio')
-            : to_route('user.inicio');
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('images', 'public');
+        }
+
+        $data['user_id'] = auth()->id();
+
+        Product::query()->create($data);
+
+        return to_route('products.manage')->with('message', 'Alterado com sucesso!');
+    }
+    
+    public function edit(Product $product)
+    {
+        return view('products.edit', compact('product'));
+    }
+
+    public function update(UpdateProductRequest $request, Product $product)
+    {
+        $data = $request->validated();
+
+            if ($request->hasFile('photo')) {
+                $data['photo'] = $request->file('photo')->store('images', 'public');
+            }
+
+        $data['user_id'] = auth()->id();
+
+        $product->update($data);
+
+        return to_route('products.manage')->with('message', 'Alterado com sucesso!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return to_route('products.manage')->with('message', 'Deletado com sucesso!');
     }
 
     public function search(Request $request)
@@ -52,11 +89,9 @@ class ProductController extends Controller
         $isAdmin = auth()->user()->role === 'admin';
 
         $products = $isAdmin
-            ? Product::paginate(5)                                    
-            : Product::where('user_id', auth()->id())->paginate(5);  
+            ? Product::paginate(5)
+            : Product::where('user_id', auth()->id())->paginate(5);
 
-        $view = $isAdmin ? 'admin.manage-products' : 'manage-products';
-
-        return view($view, compact('products'));
+        return view('products.manage-products', compact('products'));
     }
 }

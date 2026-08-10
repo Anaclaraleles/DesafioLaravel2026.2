@@ -26,7 +26,6 @@ Route::middleware('auth')->group(function (): void {
 
             // Placeholders temporários
             Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('user.usuarios');
-            Route::get('/products/manage', [ProductController::class, 'manage'])->name('user.products.manage');
             Route::get('/compras', fn () => 'Histórico de compras (em construção)')->name('user.compras');
             Route::get('/vendas', fn () => 'Histórico de vendas (em construção)')->name('user.vendas');
         });
@@ -38,19 +37,22 @@ Route::middleware('auth')->group(function (): void {
         Route::prefix('admin')->group(function (): void {
             Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
             Route::get('/inicio', [ProductController::class, 'index'])->name('admin.inicio');
-            Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-            Route::post('/products/create', [ProductController::class, 'store']);
+
             Route::any('/products/search', [ProductController::class, 'search'])->name('admin.products.search');
             
 
 
             // Placeholders temporários
             Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('admin.usuarios');
-            Route::get('/products/manage', [ProductController::class, 'manage'])->name('admin.products.manage');
             Route::get('/admins', fn () => 'Gerenciar Admins (em construção)')->name('admin.admins');
             Route::get('/vendas', fn () => 'Histórico de vendas (em construção)')->name('admin.vendas');
         });
     });
 });
+
+            Route::get('/products/manage', [ProductController::class, 'manage'])->name('products.manage');
+            Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+            Route::put('/products/{product}/edit', [ProductController::class, 'update']);
+            Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 //require __DIR__.'/auth.php';
