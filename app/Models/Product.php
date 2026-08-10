@@ -22,4 +22,9 @@ class Product extends Model
         'category', 
         'photo'
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

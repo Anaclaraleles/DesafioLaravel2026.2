@@ -47,4 +47,16 @@ class ProductController extends Controller
 
         return view($view, compact('products', 'filters'));
     }
+    public function manage()
+    {
+        $isAdmin = auth()->user()->role === 'admin';
+
+        $products = $isAdmin
+            ? Product::paginate(5)                                    
+            : Product::where('user_id', auth()->id())->paginate(5);  
+
+        $view = $isAdmin ? 'admin.manage-products' : 'manage-products';
+
+        return view($view, compact('products'));
+    }
 }

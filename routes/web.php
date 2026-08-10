@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function (): void {
 
             // Placeholders temporários
             Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('user.usuarios');
-            Route::get('/produtos', fn () => 'Gerenciar Produtos (em construção)')->name('user.produtos');
+            Route::get('/products/manage', [ProductController::class, 'manage'])->name('user.products.manage');
             Route::get('/compras', fn () => 'Histórico de compras (em construção)')->name('user.compras');
             Route::get('/vendas', fn () => 'Histórico de vendas (em construção)')->name('user.vendas');
         });
@@ -41,11 +41,12 @@ Route::middleware('auth')->group(function (): void {
             Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
             Route::post('/products/create', [ProductController::class, 'store']);
             Route::any('/products/search', [ProductController::class, 'search'])->name('admin.products.search');
+            
 
 
             // Placeholders temporários
             Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('admin.usuarios');
-            Route::get('/produtos', fn () => 'Gerenciar Produtos (em construção)')->name('admin.produtos');
+            Route::get('/products/manage', [ProductController::class, 'manage'])->name('admin.products.manage');
             Route::get('/admins', fn () => 'Gerenciar Admins (em construção)')->name('admin.admins');
             Route::get('/vendas', fn () => 'Histórico de vendas (em construção)')->name('admin.vendas');
         });
