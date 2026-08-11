@@ -11,3 +11,5 @@
 @theme {
     --font-sans: 'Poppins', sans-serif;
 }
+
+[x-cloak] { display: none !important; }
