@@ -55,4 +55,6 @@ Route::middleware('auth')->group(function (): void {
             Route::put('/products/{product}/edit', [ProductController::class, 'update']);
             Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
+            Route::get('/product/{id}', [ProductController::class, 'detail'])->name('product.detail');
+
 //require __DIR__.'/auth.php';

@@ -94,4 +94,11 @@ class ProductController extends Controller
 
         return view('products.manage-products', compact('products'));
     }
+
+    public function detail($id)
+    {
+        $product = Product::findOrFail($id);
+        
+        return view('products.product-details', compact('product'));
+    }
 }

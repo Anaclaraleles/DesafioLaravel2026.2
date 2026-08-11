@@ -11,10 +11,14 @@
         <span class="block text-2xl font-semibold text-green-600 mb-4"> R$ {{ number_format($product->price, 2, ',', '.') }} </span>
 
         <div class="flex items-center justify-between gap-2">
-            <button type="button" class="flex justify-center items-center border-2 w-60 border-[#6B5744] text-[#6B5744] bg-[#6B5744]/15 font-medium rounded-md px-3 p-3 cursor-pointer">Saber mais</button>
+            <a href="{{ route('product.detail', $product) }}"
+                class="flex justify-center items-center border-2 w-60 border-[#6B5744] text-[#6B5744] bg-[#6B5744]/15 font-medium rounded-md px-3 p-3 cursor-pointer">Saber mais
+            </a>
+            @unless (auth()->user()->role === 'admin')
             <button type="button" class="bg-green-600 border-2 rounded-md border-[#1B5E3A] hover:bg-green-700 text-white p-3 transition cursor-pointer">
                 <x-heroicon-s-shopping-cart class="w-5 h-5" />
             </button>
+            @endunless
         </div>
     </div>
 </div>
