@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function (): void {
     Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
     Route::post('/user/create', [UserController::class, 'store']);
-    Route::delete('user/{user}', [ProductController::class, 'destroy'])->name('user.destroy');
+    Route::delete('user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
 });
 //require __DIR__.'/auth.php';

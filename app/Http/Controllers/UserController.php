@@ -23,7 +23,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        return view('users');
     }
 
     /**
@@ -37,9 +37,10 @@ class UserController extends Controller
             $data['photo'] = $request->file('photo')->store('images', 'public');
         }
 
+        $data['role'] = 'user';
         User::query()->create($data);
 
-        return to_route('users')->with('message', 'Alterado com sucesso!');
+        return to_route('usuarios')->with('message', 'Criado com sucesso!');
     }
     
     public function edit(User $user)
@@ -51,19 +52,21 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-            if ($request->hasFile('photo')) {
-                $data['photo'] = $request->file('photo')->store('images', 'public');
-            }
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('images', 'public');
+        }
+
+        $data['role'] = 'user';
 
         $user->update($data);
 
-        return to_route('users')->with('message', 'Alterado com sucesso!');
+        return to_route('usuarios')->with('message', 'Alterado com sucesso!');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
 
-        return to_route('users')->with('message', 'Deletado com sucesso!');
+        return to_route('usuarios')->with('message', 'Deletado com sucesso!');
     }
 }

@@ -31,7 +31,6 @@ class StoreUserRequest extends FormRequest
             'birth_date' => ['required', 'date', 'before:today'],
             'balance' => ['nullable', 'numeric', 'min:0'],
             'photo' => ['nullable', 'image', 'max:2048'],
-            'role' => ['required', Rule::in(['user', 'admin'])],
         ];
     }
 }

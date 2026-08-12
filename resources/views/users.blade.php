@@ -1,6 +1,6 @@
 <x-layouts.app active="usuarios" title="Gerenciar Usuários">
 
-    <!-- <div x-data="{ showCreateModal: {{ $errors->any() ? 'true' : 'false' }}, editingProductId: null }"> -->
+    <div x-data="{ showCreateModal: {{ $errors->any() ? 'true' : 'false' }}, editingUserId: null }">
 
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
             <div>
@@ -10,6 +10,7 @@
 
             @unless (auth()->user()->role === 'user')
                 <button type="button"
+                    @click="showCreateModal = true"
                     class="inline-flex items-center gap-2 bg-[#4E6E6E] hover:bg-[#3a5555] text-white font-medium px-5 py-3 rounded-lg transition cursor-pointer">
                     <x-heroicon-o-plus class="w-5 h-5" />
                     Adicionar Usuário
@@ -45,7 +46,7 @@
                             <td class="px-6 py-4 text-center text-sm text-gray-500">{{ \Carbon\Carbon::parse($user->birth_date)->format('d/m/Y') }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center justify-center gap-3">
-                                    <button type="button" class="text-yellow-500 hover:text-yellow-500 cursor-pointer" title="Editar">
+                                    <button type="button" @click="editingUserId = {{ $user->id }}" class="text-yellow-500 hover:text-yellow-500 cursor-pointer" title="Editar">
                                         <x-heroicon-o-pencil-square class="w-5 h-5" />
                                     </button>
                                     <form action="{{ route('user.destroy', $user) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
@@ -74,6 +75,20 @@
         <div class="mt-8 flex justify-center">
             {{ $users->links() }}
         </div>
+
+        {{-- Modal de criação de usuario --}}
+        <div x-show="showCreateModal" x-cloak x-transition.opacity class="fixed inset-0 z-50 overflow-y-auto bg-black/70">
+            <div class="flex min-h-full items-center justify-center p-4">
+                <x-user-create-modal />
+            </div>
+        </div>
+
+        {{-- Modais de edição de usuario --}}
+        @foreach ($users as $user)
+        <div x-show="editingUserId === {{ $user->id }}" x-cloak x-transition.opacity class="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+            <x-user-edit-modal :user="$user" />
+        </div>
+        @endforeach
 
     </div>
 </x-layouts.app>
