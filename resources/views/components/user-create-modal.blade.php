@@ -122,8 +122,8 @@
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                     CEP<span class="text-red-500">*</span>
                 </label>
-                <input name="zip_code" value="{{ old('zip_code') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
-                @error('zip_code')
+                <input name="cep" value="{{ old('cep') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                @error('cep')
                     <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
             </div>

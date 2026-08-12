@@ -31,6 +31,14 @@ class StoreUserRequest extends FormRequest
             'birth_date' => ['required', 'date', 'before:today'],
             'balance' => ['nullable', 'numeric', 'min:0'],
             'photo' => ['nullable', 'image', 'max:2048'],
+
+            'cep' => ['required', 'string', 'size:8'],
+            'street' => ['required', 'string', 'max:150'],
+            'number' => ['required', 'string', 'max:10'],
+            'neighborhood' => ['required', 'string', 'max:100'],
+            'city' => ['required', 'string', 'max:100'],
+            'state' => ['required', 'string', 'size:2'],
+            'complement' => ['nullable', 'string', 'max:100'],
         ];
     }
 }

@@ -3,10 +3,10 @@
     <div x-data="{ showCreateModal: {{ $errors->any() ? 'true' : 'false' }}, editingUserId: null }">
 
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-            <div>
+            <!-- <div>
                 <h1 class="text-3xl font-bold text-[#4E6E6E]">Usuários</h1>
                 <p class="text-sm text-[#8FA6A3]">{{ $users->total() }} usuários encontrados</p>
-            </div>
+            </div> -->
 
             @unless (auth()->user()->role === 'user')
                 <button type="button"

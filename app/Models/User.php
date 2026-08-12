@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -57,7 +56,7 @@ class User extends Authenticatable
         return $this->hasMany(Product::class);
     }
 
-    public function address()
+    public function addresses()
     {
         return $this->hasOne(Address::class, 'user_id');
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Address;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Auth;
@@ -37,8 +38,18 @@ class UserController extends Controller
             $data['photo'] = $request->file('photo')->store('images', 'public');
         }
 
-        $data['role'] = 'user';
-        User::query()->create($data);
+        $addressData = collect($data)->only([
+            'cep', 'street', 'number', 'neighborhood', 'city', 'state', 'complement',
+        ])->toArray();
+
+        $userData = collect($data)->except([
+            'cep', 'street', 'number', 'neighborhood', 'city', 'state', 'complement',
+        ])->toArray();
+
+        $userData['role'] = 'user';
+
+        $user = User::query()->create($userData);
+        $user->addresses()->create($addressData);
 
         return to_route('usuarios')->with('message', 'Criado com sucesso!');
     }
@@ -50,15 +61,25 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
+        dd($data);
         $data = $request->validated();
 
         if ($request->hasFile('photo')) {
             $data['photo'] = $request->file('photo')->store('images', 'public');
         }
 
-        $data['role'] = 'user';
+        $addressData = collect($data)->only([
+            'cep', 'street', 'number', 'neighborhood', 'city', 'state', 'complement',
+        ])->toArray();
 
-        $user->update($data);
+        $userData = collect($data)->except([
+            'cep', 'street', 'number', 'neighborhood', 'city', 'state', 'complement',
+        ])->toArray();
+
+        $userData['role'] = 'user';
+
+        $user = User::query()->update($userData);
+        $user->addresses()->update($addressData);
 
         return to_route('usuarios')->with('message', 'Alterado com sucesso!');
     }
