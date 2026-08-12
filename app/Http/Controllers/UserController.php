@@ -15,7 +15,7 @@ class UserController extends Controller
         $isAdmin = auth()->user()->role === 'admin';
 
         $users = $isAdmin
-            ? User::paginate(5)
+            ? User::where('role', 'user')->paginate(5)
             : User::where('id', auth()->id())->paginate(5);
         
         return view('users', compact('users'));
