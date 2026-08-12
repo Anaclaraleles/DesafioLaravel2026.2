@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\User;
@@ -27,7 +28,6 @@ Route::middleware('auth')->group(function (): void {
             Route::any('/products/search', [ProductController::class, 'search'])->name('user.products.search');
 
             // Placeholders temporários
-            Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('user.usuarios');
             Route::get('/compras', fn () => 'Histórico de compras (em construção)')->name('user.compras');
             Route::get('/vendas', fn () => 'Histórico de vendas (em construção)')->name('user.vendas');
         });
@@ -43,7 +43,6 @@ Route::middleware('auth')->group(function (): void {
 
 
             // Placeholders temporários
-            Route::get('/usuarios', fn () => 'Gerenciar Usuários (em construção)')->name('admin.usuarios');
             Route::get('/admins', fn () => 'Gerenciar Admins (em construção)')->name('admin.admins');
             Route::get('/vendas', fn () => 'Histórico de vendas (em construção)')->name('admin.vendas');
         });
@@ -57,6 +56,11 @@ Route::middleware('auth')->group(function (): void {
 
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+    Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios');
+    Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/user/create', [UserController::class, 'store']);
+    Route::delete('user/{user}', [ProductController::class, 'destroy'])->name('user.destroy');
 
 });
 //require __DIR__.'/auth.php';

@@ -4,14 +4,14 @@
     $menuItems = $isAdmin
         ? [
             ['key' => 'inicio', 'label' => 'Início', 'route' => 'admin.inicio', 'icon' => 'home'],
-            ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'admin.usuarios', 'icon' => 'users'],
+            ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'usuarios', 'icon' => 'users'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],
             ['key' => 'admins', 'label' => 'Gerenciar Admins', 'route' => 'admin.admins', 'icon' => 'shield-check'],
             ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'admin.vendas', 'icon' => 'arrow-trending-up'],
         ]
         : [
             ['key' => 'inicio', 'label' => 'Início', 'route' => 'user.inicio', 'icon' => 'home'],
-            ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'user.usuarios', 'icon' => 'users'],
+            ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'usuarios', 'icon' => 'users'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],
             ['key' => 'compras', 'label' => 'Histórico de compras', 'route' => 'user.compras', 'icon' => 'shopping-cart'],
             ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'user.vendas', 'icon' => 'chart-bar'],
