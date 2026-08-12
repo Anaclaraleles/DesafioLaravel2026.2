@@ -1,4 +1,4 @@
-<x-layouts.app active="Gerenciar Produtos" title="Gerenciar Produtos">
+<x-layouts.app active="produtos" title="Gerenciar Produtos">
 
     <div x-data="{ showCreateModal: {{ $errors->any() ? 'true' : 'false' }}, editingProductId: null }">
 

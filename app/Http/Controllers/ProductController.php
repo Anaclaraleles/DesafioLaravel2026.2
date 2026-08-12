@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-     public function index()
+    public function index()
     {
         $products = Product::paginate(6);
 
