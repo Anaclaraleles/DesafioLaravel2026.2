@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Address;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -32,5 +33,8 @@ use Illuminate\Support\Facades\Hash;
             ]);
 
             Product::factory(7)->create();
+
+            Address::factory()->create(['user_id' => 1]);
+            Address::factory()->create(['user_id' => 2]);
         }
 }
