@@ -56,12 +56,11 @@ class UserController extends Controller
     
     public function edit(User $user)
     {
-        return view('user.edit', compact('user'));
+        return view('users', compact('user'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        dd($data);
         $data = $request->validated();
 
         if ($request->hasFile('photo')) {
@@ -78,8 +77,8 @@ class UserController extends Controller
 
         $userData['role'] = 'user';
 
-        $user = User::query()->update($userData);
-        $user->addresses()->update($addressData);
+        $user->update($userData);
+        $user->addresses()->first()->update($addressData);
 
         return to_route('usuarios')->with('message', 'Alterado com sucesso!');
     }

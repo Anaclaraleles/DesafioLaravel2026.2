@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -24,14 +26,26 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:150'],
-            'email' => ['required', 'string', 'email', 'max:150', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'cpf' => ['required', 'string', 'size:11', 'unique:users,cpf'],
+            'email' => [
+                'required', 'string', 'email', 'max:150',
+                Rule::unique(User::class)->ignore($this->route('user')->id),
+            ],
+            'cpf' => [
+                'required', 'string', 'size:11',
+                Rule::unique(User::class)->ignore($this->route('user')->id),
+            ],
             'phone' => ['required', 'string', 'max:20'],
             'birth_date' => ['required', 'date', 'before:today'],
             'balance' => ['nullable', 'numeric', 'min:0'],
             'photo' => ['nullable', 'image', 'max:2048'],
-            'role' => ['required', Rule::in(['user', 'admin'])],
+
+            'cep' => ['required', 'string', 'size:8'],
+            'street' => ['required', 'string', 'max:150'],
+            'number' => ['required', 'string', 'max:10'],
+            'neighborhood' => ['required', 'string', 'max:100'],
+            'city' => ['required', 'string', 'max:100'],
+            'state' => ['required', 'string', 'size:2'],
+            'complement' => ['nullable', 'string', 'max:100'],
         ];
     }
 }
