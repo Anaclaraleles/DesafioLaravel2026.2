@@ -117,12 +117,13 @@
                 </div>
             </div>
 
+
             {{-- CEP --}}
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                     CEP<span class="text-red-500">*</span>
                 </label>
-                <input name="cep" value="{{ old('cep') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                <input name="cep" value="{{ old('cep') }}" id="cep" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]" onblur="pesquisacep(this.value);"/>
                 @error('cep')
                     <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
@@ -133,7 +134,7 @@
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                     Logradouro<span class="text-red-500">*</span>
                 </label>
-                <input name="street" value="{{ old('street') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                <input name="street" value="{{ old('street') }}" id="rua" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                 @error('street')
                     <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
@@ -145,7 +146,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Bairro<span class="text-red-500">*</span>
                     </label>
-                    <input name="neighborhood" value="{{ old('neighborhood') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                    <input name="neighborhood" value="{{ old('neighborhood') }}" id="bairro" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                     @error('neighborhood')
                         <span class="text-xs text-red-500">{{ $message }}</span>
                     @enderror
@@ -176,7 +177,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Cidade<span class="text-red-500">*</span>
                     </label>
-                    <input name="city" value="{{ old('city') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                    <input name="city" value="{{ old('city') }}" id="cidade" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                     @error('city')
                         <span class="text-xs text-red-500">{{ $message }}</span>
                     @enderror
@@ -186,7 +187,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Estado<span class="text-red-500">*</span>
                     </label>
-                    <input name="state" value="{{ old('state') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                    <input name="state" value="{{ old('state') }}" id="uf" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                     @error('state')
                         <span class="text-xs text-red-500">{{ $message }}</span>
                     @enderror

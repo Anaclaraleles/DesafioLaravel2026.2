@@ -24,15 +24,9 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:150'],
-            'email' => [
-                'required', 'string', 'email', 'max:150',
-                Rule::unique(User::class)->ignore($this->user()->id),
-            ],
+            'email' => ['required', 'string', 'email', 'max:150'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'cpf' => [
-                'required', 'string', 'size:11',
-                Rule::unique(User::class)->ignore($this->user()->id),
-            ],
+            'cpf' => ['required', 'string', 'size:11'],
             'phone' => ['required', 'string', 'max:20'],
             'birth_date' => ['required', 'date', 'before:today'],
             'balance' => ['nullable', 'numeric', 'min:0'],

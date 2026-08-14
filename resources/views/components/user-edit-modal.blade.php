@@ -17,7 +17,7 @@
             @method('put')
             <input type="hidden" name="_editing_user_id" value="{{ $user->id }}">
 
-             {{-- Upload de foto --}}
+            {{-- Upload de foto --}}
             <div class="flex flex-col items-center mb-6">
                 <label class="text-sm font-medium text-gray-700 mb-2">Foto</label>
 
@@ -119,7 +119,7 @@
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                     CEP<span class="text-red-500">*</span>
                 </label>
-                <input name="cep" value="{{ old('cep', $user->addresses->first()?->cep ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                <input name="cep" id="cep-{{ $user->id }}" value="{{ old('cep', $user->addresses->first()?->cep ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]" onblur="pesquisacep(this.value, '{{ $user->id }}');"/>
                 @error('cep')
                     <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
@@ -130,7 +130,7 @@
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                     Logradouro<span class="text-red-500">*</span>
                 </label>
-                <input name="street" value="{{ old('street', $user->addresses->first()?->street ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                <input name="street" id="rua-{{ $user->id }}" value="{{ old('street', $user->addresses->first()?->street ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                 @error('street')
                     <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
@@ -142,7 +142,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Bairro<span class="text-red-500">*</span>
                     </label>
-                    <input name="neighborhood" value="{{ old('neighborhood', $user->addresses->first()?->neighborhood ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                    <input name="neighborhood" id="bairro-{{ $user->id }}" value="{{ old('neighborhood', $user->addresses->first()?->neighborhood ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                     @error('neighborhood')
                         <span class="text-xs text-red-500">{{ $message }}</span>
                     @enderror
@@ -173,7 +173,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Cidade<span class="text-red-500">*</span>
                     </label>
-                    <input name="city" value="{{ old('city', $user->addresses->first()?->city ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                    <input name="city" id="cidade-{{ $user->id }}" value="{{ old('city', $user->addresses->first()?->city ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                     @error('city')
                         <span class="text-xs text-red-500">{{ $message }}</span>
                     @enderror
@@ -183,7 +183,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Estado<span class="text-red-500">*</span>
                     </label>
-                    <input name="state" value="{{ old('state', $user->addresses->first()?->state ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                    <input name="state" id="uf-{{ $user->id }}" value="{{ old('state', $user->addresses->first()?->state ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                     @error('state')
                         <span class="text-xs text-red-500">{{ $message }}</span>
                     @enderror
