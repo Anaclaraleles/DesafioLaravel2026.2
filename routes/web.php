@@ -19,13 +19,10 @@ Route::middleware('guest')->group(function () {
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
-
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
-
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
         ->name('password.reset');
-
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
 });
@@ -33,9 +30,6 @@ Route::middleware('guest')->group(function () {
 Route::get('/', function () {
     return view('auth/login');
 });
-
-Route::get('/inicio', [ProductController::class, 'index'])->name('inicio');
-
 
 Route::middleware('auth')->group(function (): void {
 
@@ -68,6 +62,8 @@ Route::middleware('auth')->group(function (): void {
         });
     });
 
+    Route::get('/inicio', [ProductController::class, 'index'])->name('inicio');
+
     Route::get('/products/manage', [ProductController::class, 'manage'])->name('products.manage');
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}/edit', [ProductController::class, 'update']);
@@ -85,4 +81,3 @@ Route::middleware('auth')->group(function (): void {
     Route::delete('user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
 });
-// require __DIR__.'/auth.php';
