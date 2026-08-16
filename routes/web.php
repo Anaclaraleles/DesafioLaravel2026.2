@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\User;
@@ -57,7 +58,12 @@ Route::middleware('auth')->group(function (): void {
 
 
             // Placeholders temporários
-            Route::get('/admins', fn () => 'Gerenciar Admins (em construção)')->name('admin.admins');
+            Route::get('/admins', [ManagerController::class, 'index'])->name('admins');
+            Route::get('/create', [ManagerController::class, 'create'])->name('admin.create');
+            Route::post('/create', [ManagerController::class, 'store']);
+            Route::get('/admin/{admin}/edit', [ManagerController::class, 'edit'])->name('admin.edit');
+            Route::put('/admin/{admin}/edit', [ManagerController::class, 'update']);
+
             Route::get('/vendas', fn () => 'Histórico de vendas (em construção)')->name('admin.vendas');
         });
     });

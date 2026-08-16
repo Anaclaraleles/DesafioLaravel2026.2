@@ -6,7 +6,7 @@
             ['key' => 'inicio', 'label' => 'Início', 'route' => 'admin.inicio', 'icon' => 'home'],
             ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'usuarios', 'icon' => 'users'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],
-            ['key' => 'admins', 'label' => 'Gerenciar Admins', 'route' => 'admin.admins', 'icon' => 'shield-check'],
+            ['key' => 'admins', 'label' => 'Gerenciar Admins', 'route' => 'admins', 'icon' => 'shield-check'],
             ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'admin.vendas', 'icon' => 'arrow-trending-up'],
         ]
         : [
