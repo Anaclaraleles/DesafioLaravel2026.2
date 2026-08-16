@@ -24,8 +24,8 @@ class LoginController extends Controller
             $user = Auth::user();
 
             return $user->role === 'admin'
-                ? to_route('admin.inicio')
-                : to_route('user.inicio');
+                ? to_route('inicio')
+                : to_route('inicio');
         }
 
         return back()->with(['message' => 'Não deu certo!!']);

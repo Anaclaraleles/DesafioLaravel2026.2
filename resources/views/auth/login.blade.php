@@ -52,7 +52,7 @@
                             @enderror
                         </div>
 
-                        <a href="#" class="text-sm font-semibold text-gray-700 hover:text-green-700 block">
+                        <a href="{{ route('password.request') }}" class="text-sm font-semibold text-gray-700 hover:text-green-700 block">
                             Esqueceu sua senha?
                         </a>
 

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
@@ -10,12 +12,30 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\User;
 use App\Http\Middleware\Admin;
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+Route::middleware('guest')->group(function () {
+
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
+
+    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
+        ->name('password.request');
+
+    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+        ->name('password.email');
+
+    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+        ->name('password.reset');
+
+    Route::post('reset-password', [NewPasswordController::class, 'store'])
+        ->name('password.store');
+});
 
 Route::get('/', function () {
     return view('auth/login');
 });
+
+Route::get('/inicio', [ProductController::class, 'index'])->name('inicio');
+
 
 Route::middleware('auth')->group(function (): void {
 
@@ -65,4 +85,4 @@ Route::middleware('auth')->group(function (): void {
     Route::delete('user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
 });
-//require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
