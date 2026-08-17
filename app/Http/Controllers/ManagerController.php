@@ -42,6 +42,7 @@ class ManagerController extends Controller
         ])->toArray();
 
         $userData['role'] = 'admin';
+        $userData['created_by'] = auth()->id();
 
         $user = User::query()->create($userData);
         $user->addresses()->create($addressData);
@@ -56,6 +57,11 @@ class ManagerController extends Controller
 
     public function update(UpdateManagerRequest $request, User $admin)
     {
+
+        if ($admin->id !== auth()->id() && $admin->created_by !== auth()->id()) {
+                abort(403, 'Você não tem permissão para editar este administrador.');
+        }
+
         $data = $request->validated();
 
         if ($request->hasFile('photo')) {
@@ -78,10 +84,14 @@ class ManagerController extends Controller
         return to_route('admins')->with('message', 'Alterado com sucesso!');
     }
 
-    public function destroy(User $user)
+    public function destroy(User $admin)
     {
-        $user->delete();
+        if ($admin->id !== auth()->id() && $admin->created_by !== auth()->id()) {
+        abort(403, 'Você não tem permissão para excluir este administrador.');
+        }
 
-        return to_route('admin.manager')->with('message', 'Deletado com sucesso!');
+        $admin->delete();
+
+        return to_route('admins')->with('message', 'Deletado com sucesso!');
     }
 }

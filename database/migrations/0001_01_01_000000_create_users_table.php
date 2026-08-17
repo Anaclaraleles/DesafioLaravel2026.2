@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('balance', 10, 2)->default(0);
             $table->string('photo')->nullable();
             $table->enum('role', ['user', 'admin'])->default('user');
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
             $table->softDeletes(); 
         });

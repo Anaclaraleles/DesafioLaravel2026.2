@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function (): void {
             Route::post('/create', [ManagerController::class, 'store']);
             Route::get('/admin/{admin}/edit', [ManagerController::class, 'edit'])->name('admin.edit');
             Route::put('/admin/{admin}/edit', [ManagerController::class, 'update']);
+            Route::delete('admin/{admin}', [ManagerController::class, 'destroy'])->name('admin.destroy');
 
             Route::get('/vendas', fn () => 'Histórico de vendas (em construção)')->name('admin.vendas');
         });

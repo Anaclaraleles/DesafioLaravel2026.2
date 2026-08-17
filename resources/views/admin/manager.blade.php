@@ -52,7 +52,7 @@
                                     <button type="button" @click="editingAdminId = {{ $admin->id }}" class="text-yellow-500 hover:text-yellow-500 cursor-pointer" title="Editar">
                                         <x-heroicon-o-pencil-square class="w-5 h-5" />
                                     </button>
-                                    <form action="#" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este administrador?');">
+                                    <form action="{{ route('admin.destroy', $admin) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este administrador?');">
                                         @csrf
                                         @method('DELETE')
 
