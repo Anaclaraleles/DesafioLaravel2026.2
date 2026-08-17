@@ -88,8 +88,8 @@
                 </div>
             </div>
 
-            {{-- Data de Nascimento / Telefone / Saldo --}}
-            <div class="grid grid-cols-3 gap-3 mb-4">
+            {{-- Data de Nascimento / Telefone --}}
+            <div class="grid grid-cols-2 gap-3 mb-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Data de Nascimento</label>
                     <input type="date" name="birth_date" value="{{ old('birth_date') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
@@ -102,16 +102,6 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Telefone</label>
                     <input name="phone" value="{{ old('phone') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                     @error('phone')
-                        <span class="text-xs text-red-500">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">
-                        Saldo<span class="text-red-500">*</span>
-                    </label>
-                    <input type="number" step="0.01" min="0" name="balance" value="{{ old('balance') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
-                    @error('balance')
                         <span class="text-xs text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
