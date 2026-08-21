@@ -19,17 +19,21 @@
                 <p class="text-sm text-gray-600 mb-6">Vendido por: {{ $product->user->name }}</p>
 
                 @unless (auth()->user()->role === 'admin')
-                <div class="flex flex-col sm:flex-row items-center gap-4">
+                <form action="{{ route('cart.store') }}" method="POST" class="flex flex-col sm:flex-row items-center gap-4">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <input type="hidden" name="quantity" :value="quantity">
+
                     <div class="flex items-center border border-gray-300 rounded-md overflow-hidden">
                         <button type="button" @click="quantity = Math.max(1, quantity - 1)" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold cursor-pointer">−</button>
                         <span class="px-4 py-2 text-sm font-medium" x-text="quantity"></span>
                         <button type="button" @click="quantity++" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold cursor-pointer">+</button>
                     </div>
 
-                    <button type="button" class="flex-1 sm:flex-none bg-[#4CAF50] hover:bg-[#3a5555] text-white font-bold px-10 py-3 rounded-lg transition cursor-pointer">
+                    <button type="submit" class="flex-1 sm:flex-none bg-[#4CAF50] hover:bg-[#3a5555] text-white font-bold px-10 py-3 rounded-lg transition cursor-pointer">
                         COMPRAR
                     </button>
-                </div>
+                </form>
                 @endunless
             </div>
         </div>

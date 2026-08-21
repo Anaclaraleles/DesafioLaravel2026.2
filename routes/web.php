@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\User;
@@ -86,5 +87,11 @@ Route::middleware('auth')->group(function (): void {
     Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/{user}/edit', [UserController::class, 'update']);
     Route::delete('user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::get('/cart/{cartItem}', [CartController::class, 'edit'])->name('cart.update');
+    Route::put('/cart/{cartItem}', [CartController::class, 'update']);
+    Route::delete('/cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
 
 });
