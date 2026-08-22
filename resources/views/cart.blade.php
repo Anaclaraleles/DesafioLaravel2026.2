@@ -95,9 +95,13 @@
                         </span>
                     </div>
 
-                    <button type="button" class="w-full bg-green-500 opacity-60 cursor-not-allowed text-white font-bold py-3 rounded-lg">
-                        Finalizar compra
-                    </button>
+                    <form action="/checkout" method="POST">
+                        @csrf                  
+                        <input type="hidden" name="cart_items" value="{{ json_encode($cart->items) }}">
+                        <button type="submit" class="w-full bg-green-500 opacity-60 cursor-not-allowed text-white font-bold py-3 rounded-lg">
+                            Finalizar compra
+                        </button>
+                    </form>
                 </div>
             </div>
         @endif

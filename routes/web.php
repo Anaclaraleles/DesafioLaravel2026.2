@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PagSeguroController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\User;
@@ -94,4 +95,6 @@ Route::middleware('auth')->group(function (): void {
     Route::put('/cart/{cartItem}', [CartController::class, 'update']);
     Route::delete('/cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
 
+    Route::post('/checkout', [PagSeguroController::class, 'createCheckout'])->name('checkout');
+    Route::get('/erroDePagamento', function () {return view('erroPagamento');})->name('erroPagamento');
 });
