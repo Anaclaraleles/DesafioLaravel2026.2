@@ -29,7 +29,7 @@ class ProductFactory extends Factory
             'quantity' => fake()->numberBetween(0, 100),
             'photo' => 'images/' . fake()->randomElement([
                             'Produto1.webp',
-                            'Produto2.webp',
+                            'Produto2.jpg',
                             'Produto3.webp',
                             'Produto4.webp',
                             'Produto5.webp',

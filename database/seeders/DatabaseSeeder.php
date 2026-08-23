@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Hash;
                 'cpf' => '12345678900',
                 'password' => Hash::make('password'),
                 'role' => 'admin', 
+                'photo' => 'images/admin.png',
             ]);
             User::factory()->create([
                 'name' => 'User1',
@@ -31,6 +32,7 @@ use Illuminate\Support\Facades\Hash;
                 'cpf' => '00987654321',
                 'password' => Hash::make('123'),
                 'role' => 'user', 
+                'photo' => 'images/user1.jpg',
             ]);
             User::factory()->create([
                 'name' => 'User2',
@@ -38,6 +40,7 @@ use Illuminate\Support\Facades\Hash;
                 'cpf' => '67854321312',
                 'password' => Hash::make('123'),
                 'role' => 'user', 
+                'photo' => 'images/user2.png',
             ]);
             Product::factory(15)->create();
 
