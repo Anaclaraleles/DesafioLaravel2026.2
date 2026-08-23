@@ -1,9 +1,9 @@
-<x-layouts.app active="inicio" title="Produtos">
+<x-layouts.app active="carrinho" title="Carrinho">
     <div class="max-w-5xl mx-auto p-6">
 
         {{-- Cabeçalho --}}
         <div class="flex items-center gap-3 mb-6">
-            <h1 class="text-2xl font-bold text-teal-700">Carrinho de compras</h1>
+            <h1 class="text-3xl font-bold text-[#4E6E6E]">Carrinho de compras</h1>
         </div>
 
         @if (session('success'))
@@ -29,7 +29,7 @@
 
                 <div class="md:col-span-2 space-y-4">
                     @foreach ($cart->items as $item)
-                        <div class="flex items-center gap-4 bg-[#f4f1ea] border border-[#cbb894] rounded-2xl p-4">
+                        <div class="flex items-center gap-4 bg-white border border-[#6B5744] rounded-2xl p-4 shadow-lg shadow-[#6B5744]/30">
 
                             <div class="w-24 h-24 bg-white rounded-lg overflow-hidden flex items-center justify-center shrink-0">
                                 @if ($item->product->photo)
@@ -95,23 +95,23 @@
                         </span>
                     </div>
 
-                    <form action="/checkout" method="POST">
-                        @csrf                  
-                        @if($cart->items->isEmpty()) disabled @endif
-                        <input type="hidden" name="cart_items" value="{{ json_encode($cart->items) }}">
-                        <button type="submit" class="w-full bg-green-500 cursor-pointer text-white font-bold py-3 rounded-lg">
-                            @if($cart->items->isEmpty()) disabled @endif
-                            Finalizar compra (PagSeguro)
-                        </button>
-                    </form>
-
                     <form action="{{ route('mercadopago.process') }}" method="POST">
                         @csrf    
            
                         <input type="hidden" name="cart_items" value="{{ json_encode($cart->items) }}">
-                        <button type="submit" class="w-full bg-green-500 cursor-pointer text-white font-bold py-3 rounded-lg">
+                        <button type="submit" class="w-full bg-[#4CAF50] cursor-pointer text-white font-semibold text-sm py-2 rounded-lg mb-3">
                         @if($cart->items->isEmpty()) disabled @endif    
                             Finalizar compra (Mercado Pago)
+                        </button>
+                    </form>
+
+                    <form action="/checkout" method="POST">
+                        @csrf                  
+                        @if($cart->items->isEmpty()) disabled @endif
+                        <input type="hidden" name="cart_items" value="{{ json_encode($cart->items) }}">
+                        <button type="submit" class="w-full bg-[#4CAF50] cursor-pointer text-white font-semibold text-sm py-2 rounded-lg mb-3">
+                            @if($cart->items->isEmpty()) disabled @endif
+                            Finalizar compra (PagSeguro)
                         </button>
                     </form>
                 </div>

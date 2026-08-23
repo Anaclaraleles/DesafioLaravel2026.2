@@ -11,10 +11,11 @@
         ]
         : [
             ['key' => 'inicio', 'label' => 'Início', 'route' => 'user.inicio', 'icon' => 'home'],
-            ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'usuarios', 'icon' => 'users'],
+            ['key' => 'carrinho', 'label' => 'Carrinho', 'route' => 'cart.index', 'icon' => 'shopping-cart'],
+            ['key' => 'usuarios', 'label' => 'Gerenciar Perfil', 'route' => 'usuarios', 'icon' => 'users'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],
-            ['key' => 'compras', 'label' => 'Histórico de compras', 'route' => 'orders', 'icon' => 'shopping-cart'],
-            ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'sales', 'icon' => 'chart-bar'],
+            ['key' => 'compras', 'label' => 'Histórico de compras', 'route' => 'orders', 'icon' => 'clipboard-document-list'],
+            ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'sales', 'icon' => 'arrow-trending-up'],
         ];
 @endphp
 <button data-drawer-target="sidebar" data-drawer-toggle="sidebar" aria-controls="sidebar" type="button"
