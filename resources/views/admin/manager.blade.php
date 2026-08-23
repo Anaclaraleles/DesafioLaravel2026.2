@@ -21,58 +21,54 @@
             @endunless
         </div>
 
-        <!-- <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-            <div class="flex-1">
-                <x-search-bar route="admin.products.search" placeholder="Buscar produtos..." />
-            </div>
-        </div> -->
-
         <div class="bg-white rounded-xl shadow overflow-hidden">
-            <table class="min-w-full">
-                <thead class="bg-[#4E6E6E]">
-                    <tr>
-                        <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">ID</th>
-                        <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Nome</th>
-                        <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Email</th>
-                        <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">CPF</th>
-                        <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Data de aniversário</th>
-                        <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Ações</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-100">
-                    @forelse ($admins as $admin)
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $admin->id }}</td>
-                            <td class="px-6 py-4 text-center text-sm text-gray-700">{{ $admin->name }}</td>
-                            <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $admin->email }}</td>
-                            <td class="px-6 py-4 text-center text-sm text-gray-500">{{ preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $admin->cpf) }}</td>
-                            <td class="px-6 py-4 text-center text-sm text-gray-500">{{ \Carbon\Carbon::parse($admin->birth_date)->format('d/m/Y') }}</td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center justify-center gap-3">
-                                    <button type="button" @click="editingAdminId = {{ $admin->id }}" class="text-yellow-500 hover:text-yellow-500 cursor-pointer" title="Editar">
-                                        <x-heroicon-o-pencil-square class="w-5 h-5" />
-                                    </button>
-                                    <form action="{{ route('admin.destroy', $admin) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este administrador?');">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button type="submit" class="text-red-500 flex items-center justify-center hover:text-red-700 cursor-pointer" title="Excluir">
-                                            <x-heroicon-o-trash class="w-5 h-5" />
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-
-                        </tr>
-                    @empty
+            <div class="w-full overflow-x-auto md:overflow-x-visible">
+                <table class="w-full min-w-[1000px] md:min-w-0">
+                    <thead class="bg-[#4E6E6E]">
                         <tr>
-                            <td colspan="7" class="px-6 py-8 text-center text-sm text-gray-400">
-                                Nenhum administrador encontrado.
-                            </td>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">ID</th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Nome</th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Email</th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">CPF</th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Data de aniversário</th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Ações</th>
                         </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        @forelse ($admins as $admin)
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $admin->id }}</td>
+                                <td class="px-6 py-4 text-center text-sm text-gray-700">{{ $admin->name }}</td>
+                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $admin->email }}</td>
+                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $admin->cpf) }}</td>
+                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ \Carbon\Carbon::parse($admin->birth_date)->format('d/m/Y') }}</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center justify-center gap-3">
+                                        <button type="button" @click="editingAdminId = {{ $admin->id }}" class="text-yellow-500 hover:text-yellow-500 cursor-pointer" title="Editar">
+                                            <x-heroicon-o-pencil-square class="w-5 h-5" />
+                                        </button>
+                                        <form action="{{ route('admin.destroy', $admin) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este administrador?');">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" class="text-red-500 flex items-center justify-center hover:text-red-700 cursor-pointer" title="Excluir">
+                                                <x-heroicon-o-trash class="w-5 h-5" />
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="px-6 py-8 text-center text-sm text-gray-400">
+                                    Nenhum administrador encontrado.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="mt-8 flex justify-center">
