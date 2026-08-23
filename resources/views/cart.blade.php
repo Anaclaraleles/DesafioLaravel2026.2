@@ -48,25 +48,25 @@
 
                              {{-- Stepper de quantidade --}}
                             <form action="{{ route('cart.update', $item) }}" method="POST"
-                                  x-data="{ quantity: {{ $item->quantity }}, max: {{ $item->product->quantity }} }"
-                                  class="flex items-center border border-gray-300 rounded-md overflow-hidden shrink-0">
+                                x-data="{ quantity: {{ $item->quantity }}, max: {{ $item->product->quantity }} }"
+                                class="flex items-center border border-gray-300 rounded-md overflow-hidden shrink-0">
                                 @csrf
                                 @method('PUT')
- 
+
                                 <button type="button"
-                                        @click="quantity = Math.max(1, quantity - 1); $el.closest('form').submit()"
+                                        @click="quantity = Math.max(1, quantity - 1); $nextTick(() => $el.closest('form').submit())"
                                         class="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold cursor-pointer">
                                     &minus;
                                 </button>
- 
+
                                 <span class="px-4 py-2 text-sm font-medium" x-text="quantity"></span>
- 
+
                                 <button type="button"
-                                        @click="quantity = Math.min(max, quantity + 1); $el.closest('form').submit()"
+                                        @click="quantity = Math.min(max, quantity + 1); $nextTick(() => $el.closest('form').submit())"
                                         class="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold cursor-pointer">
                                     +
                                 </button>
- 
+
                                 <input type="hidden" name="quantity" :value="quantity">
                             </form>
 

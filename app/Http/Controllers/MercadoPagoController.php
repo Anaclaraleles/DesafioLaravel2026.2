@@ -76,7 +76,7 @@ class MercadoPagoController extends Controller
             'title' => $item->product->name,
             'quantity' => $item->quantity,
             'currency_id' => 'BRL',
-            'unit_price' => $item->unit_price,
+            'unit_price' => (float) $item->unit_price,
         ];
     })->toArray();
 
@@ -108,7 +108,7 @@ class MercadoPagoController extends Controller
         ]);
     }
 
-    $order->update(['preference_id' => $preference->id]);
+    // $order->update(['preference_id' => $preference->id]);
 
     return redirect($preference->init_point);
 }
