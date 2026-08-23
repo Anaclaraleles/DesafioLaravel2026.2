@@ -1,11 +1,14 @@
 function limpa_formulario_cep(userId) {
-    document.getElementById('rua-' + userId).value = "";
-    document.getElementById('bairro-' + userId).value = "";
-    document.getElementById('cidade-' + userId).value = "";
-    document.getElementById('uf-' + userId).value = "";
+    const suffix = userId ? '-' + userId : '';
+
+    document.getElementById('rua' + suffix).value = "";
+    document.getElementById('bairro' + suffix).value = "";
+    document.getElementById('cidade' + suffix).value = "";
+    document.getElementById('uf' + suffix).value = "";
 }
 
 async function pesquisacep(valor, userId) {
+    const suffix = userId ? '-' + userId : '';
     const cep = valor.replace(/\D/g, '');
 
     if (cep.length !== 8) {
@@ -13,10 +16,10 @@ async function pesquisacep(valor, userId) {
         return;
     }
 
-    document.getElementById('rua-' + userId).value = "...";
-    document.getElementById('bairro-' + userId).value = "...";
-    document.getElementById('cidade-' + userId).value = "...";
-    document.getElementById('uf-' + userId).value = "...";
+    document.getElementById('rua' + suffix).value = "...";
+    document.getElementById('bairro' + suffix).value = "...";
+    document.getElementById('cidade' + suffix).value = "...";
+    document.getElementById('uf' + suffix).value = "...";
 
     try {
         const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -28,10 +31,10 @@ async function pesquisacep(valor, userId) {
             return;
         }
 
-        document.getElementById('rua-' + userId).value = data.logradouro;
-        document.getElementById('bairro-' + userId).value = data.bairro;
-        document.getElementById('cidade-' + userId).value = data.localidade;
-        document.getElementById('uf-' + userId).value = data.uf;
+        document.getElementById('rua' + suffix).value = data.logradouro;
+        document.getElementById('bairro' + suffix).value = data.bairro;
+        document.getElementById('cidade' + suffix).value = data.localidade;
+        document.getElementById('uf' + suffix).value = data.uf;
 
     } catch (error) {
         console.error('Erro ao buscar CEP:', error);
