@@ -21,8 +21,8 @@
                         <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Pedido</th>
                         <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Data</th>
                         <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Produtos</th>
-                        <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Total</th>
                         <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Vendido por</th>
+                        <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Total</th>
                         <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Status</th>
                     </tr>
                 </thead>
@@ -37,11 +37,11 @@
                             {{ $sale->product->name}}
                             <span class="text-gray-400">x{{ $sale->quantity }}</span>
                         </td>
-                        <td class="px-6 py-4 text-center text-sm font-semibold text-green-600">
-                            R$ {{ number_format($sale->sub_total, 2, ',', '.') }}
+                        <td class="px-6 py-4 text-center text-sm text-gray-700">
+                            {{ $sale->seller->name ?? '—' }}
                         </td>
                         <td class="px-6 py-4 text-center text-sm font-semibold text-green-600">
-                            {{ $sale->seller->name ?? '—' }}
+                            R$ {{ number_format($sale->sub_total, 2, ',', '.') }}
                         </td>
                         <td class="px-6 py-4 text-center">
                             @php
@@ -73,5 +73,12 @@
         <div class="mt-8 flex justify-center">
             {{ $sales->links() }}
         </div>
+
+        @if (auth()->user()->role === 'admin')
+            <div class="mt-8">
+                {!! $chart->renderHtml() !!}
+                {!! $chart->renderJs() !!}
+            </div>
+        @endif
     </div>
 </x-layouts.app>
