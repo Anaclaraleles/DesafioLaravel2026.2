@@ -56,8 +56,6 @@ class ProductController extends Controller
                 $data['photo'] = $request->file('photo')->store('images', 'public');
             }
 
-        $data['user_id'] = auth()->id();
-
         $product->update($data);
 
         return to_route('products.manage')->with('message', 'Alterado com sucesso!');
