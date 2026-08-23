@@ -3,14 +3,14 @@
     $isAdmin = auth()->user()->role === 'admin';
     $menuItems = $isAdmin
         ? [
-            ['key' => 'inicio', 'label' => 'Início', 'route' => 'admin.inicio', 'icon' => 'home'],
+            ['key' => 'inicio', 'label' => 'Início', 'route' => 'inicio', 'icon' => 'home'],
             ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'usuarios', 'icon' => 'users'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],
             ['key' => 'admins', 'label' => 'Gerenciar Admins', 'route' => 'admins', 'icon' => 'shield-check'],
             ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'sales', 'icon' => 'arrow-trending-up'],
         ]
         : [
-            ['key' => 'inicio', 'label' => 'Início', 'route' => 'user.inicio', 'icon' => 'home'],
+            ['key' => 'inicio', 'label' => 'Início', 'route' => 'inicio', 'icon' => 'home'],
             ['key' => 'carrinho', 'label' => 'Carrinho', 'route' => 'cart.index', 'icon' => 'shopping-cart'],
             ['key' => 'usuarios', 'label' => 'Gerenciar Perfil', 'route' => 'usuarios', 'icon' => 'user'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],

@@ -13,11 +13,13 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::paginate(6);
+        $user = auth()->user();
 
-        $view = auth()->user()->role === 'admin' ? 'admin.inicio' : 'inicio';
+        $products = $user->role === 'admin'
+            ? Product::paginate(6)
+            : Product::where('user_id', '!=', $user->id)->paginate(6);
 
-        return view($view, compact('products'));
+        return view('inicio', compact('products'));
     }
 
     public function create()
@@ -79,9 +81,7 @@ class ProductController extends Controller
             ->orWhere('category', 'LIKE', "%{$request->search}%")
             ->paginate(6);
 
-        $view = auth()->user()->role === 'admin' ? 'admin.inicio' : 'inicio';
-
-        return view($view, compact('products', 'filters'));
+        return view('inicio', compact('products', 'filters'));
     }
     public function manage()
     {

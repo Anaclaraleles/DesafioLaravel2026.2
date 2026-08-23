@@ -21,11 +21,7 @@ class LoginController extends Controller
     public function login(MakeLoginRequest $request)
     {
         if ($request->attempt()) {
-            $user = Auth::user();
-
-            return $user->role === 'admin'
-                ? to_route('inicio')
-                : to_route('inicio');
+            return to_route('inicio');
         }
 
         return back()->with(['message' => 'Não deu certo!!']);
