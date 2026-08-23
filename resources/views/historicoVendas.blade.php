@@ -7,11 +7,21 @@
                 <p class="text-sm text-[#8FA6A3]">{{ $sales->total() }} vendas encontradas</p>
             </div>
 
-            <a href="{{ route('sales.pdf') }}"
-            class="inline-flex items-center gap-2 bg-[#4E6E6E] hover:bg-[#3a5555] text-white font-medium px-5 py-3 rounded-lg transition cursor-pointer">
-                <x-heroicon-o-arrow-down-tray class="w-5 h-5" />
-                Baixar PDF
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="{{ route('sales.pdf') }}"
+                class="inline-flex items-center gap-2 bg-[#4E6E6E] hover:bg-[#3a5555] text-white font-medium px-5 py-3 rounded-lg transition cursor-pointer">
+                    <x-heroicon-o-arrow-down-tray class="w-5 h-5" />
+                    Baixar PDF
+                </a>
+
+                @if (auth()->user()->role === 'admin')
+                <a href="{{ route('sales.excel') }}"
+                    class="inline-flex items-center gap-2 bg-[#4E6E6E]/10 hover:bg-[#4E6E6E]/20 text-[#4E6E6E] font-medium px-5 py-3 rounded-lg border-2 border-[#2E3B2F] transition cursor-pointer">
+                    <x-heroicon-o-table-cells class="w-5 h-5" />
+                    Baixar Excel
+                </a>
+                @endif
+            </div>
         </div>
 
         <div class="bg-white rounded-xl shadow overflow-hidden">

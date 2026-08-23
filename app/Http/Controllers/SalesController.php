@@ -9,6 +9,8 @@ use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+use App\Exports\SalesDataExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SalesController extends Controller
 {
@@ -39,7 +41,7 @@ class SalesController extends Controller
         return view('historicoVendas', compact('sales', 'chart'));
     }
 
-    public function downloadPdf(): Response
+    public function downloadPdf()
     {
         $isAdmin = auth()->user()->role === 'admin';
 
@@ -58,5 +60,10 @@ class SalesController extends Controller
         ]);
 
         return $pdf->download('historico-de-vendas.pdf');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new SalesDataExport(), 'historico-de-vendas.xlsx');
     }
 }

@@ -106,4 +106,5 @@ Route::middleware('auth')->group(function (): void {
 
     Route::get('/vendas', [SalesController::class, 'index'])->name('sales');
     Route::get('/vendas/pdf', [SalesController::class, 'downloadPdf'])->name('sales.pdf');
+    Route::get('/vendas/excel', [SalesController::class, 'exportExcel'])->name('sales.excel');
 });
