@@ -19,11 +19,15 @@ class Order extends Model
  
     protected $casts = [
         'total' => 'decimal:2',
-        'items' => 'array',
     ];
- 
+
     public function buyer()
     {
         return $this->belongsTo(User::class, 'buyer_id');
+    }
+
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

@@ -97,9 +97,21 @@
 
                     <form action="/checkout" method="POST">
                         @csrf                  
+                        @if($cart->items->isEmpty()) disabled @endif
                         <input type="hidden" name="cart_items" value="{{ json_encode($cart->items) }}">
-                        <button type="submit" class="w-full bg-green-500 opacity-60 cursor-not-allowed text-white font-bold py-3 rounded-lg">
-                            Finalizar compra
+                        <button type="submit" class="w-full bg-green-500 cursor-pointer text-white font-bold py-3 rounded-lg">
+                            @if($cart->items->isEmpty()) disabled @endif
+                            Finalizar compra (PagSeguro)
+                        </button>
+                    </form>
+
+                    <form action="{{ route('mercadopago.process') }}" method="POST">
+                        @csrf    
+           
+                        <input type="hidden" name="cart_items" value="{{ json_encode($cart->items) }}">
+                        <button type="submit" class="w-full bg-green-500 cursor-pointer text-white font-bold py-3 rounded-lg">
+                        @if($cart->items->isEmpty()) disabled @endif    
+                            Finalizar compra (Mercado Pago)
                         </button>
                     </form>
                 </div>

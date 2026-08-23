@@ -39,4 +39,9 @@ return [
         'checkout_url' => env('PAGSEGURO_CHECKOUT_URL'),
         'token' => env('PAGSEGURO_TOKEN')
     ],
+
+    'mercadopago' => [
+        'access_token' => env('MERCADOPAGO_ACCESS_TOKEN'),
+        'public_key' => env('MERCADOPAGO_PUBLIC_KEY'),
+    ],
 ];

@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PagSeguroController;
+use App\Http\Controllers\MercadoPagoController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\User;
@@ -17,21 +18,19 @@ use App\Http\Middleware\Admin;
 
 Route::middleware('guest')->group(function () {
 
+    Route::get('/', function () {return view('auth/login');});
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
 
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-        ->name('password.request');
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-        ->name('password.reset');
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.store');
-});
-
-Route::get('/', function () {
-    return view('auth/login');
+    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
+    Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
+   
+    Route::get('/checkout/success', [MercadoPagoController::class, 'success'])->name('mercadopago.success');   
+    Route::get('/checkout/pending', [MercadoPagoController::class, 'pending'])->name('mercadopago.pending');   
+    Route::get('/checkout/failure', [MercadoPagoController::class, 'failure'])->name('mercadopago.failure');   
+    Route::post('/webhooks/mercadopago', [MercadoPagoController::class, 'webhook'])->name('mercadopago.webhook');
 });
 
 Route::middleware('auth')->group(function (): void {
@@ -97,4 +96,6 @@ Route::middleware('auth')->group(function (): void {
 
     Route::post('/checkout', [PagSeguroController::class, 'createCheckout'])->name('checkout');
     Route::get('/erroDePagamento', function () {return view('erroPagamento');})->name('erroPagamento');
+
+    Route::post('/checkout/mercadopago', [MercadoPagoController::class, 'process'])->name('mercadopago.process');
 });
