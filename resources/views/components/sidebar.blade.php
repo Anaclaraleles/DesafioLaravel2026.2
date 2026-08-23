@@ -7,14 +7,14 @@
             ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'usuarios', 'icon' => 'users'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],
             ['key' => 'admins', 'label' => 'Gerenciar Admins', 'route' => 'admins', 'icon' => 'shield-check'],
-            ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'admin.vendas', 'icon' => 'arrow-trending-up'],
+            ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'sales', 'icon' => 'arrow-trending-up'],
         ]
         : [
             ['key' => 'inicio', 'label' => 'Início', 'route' => 'user.inicio', 'icon' => 'home'],
             ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'usuarios', 'icon' => 'users'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],
             ['key' => 'compras', 'label' => 'Histórico de compras', 'route' => 'orders', 'icon' => 'shopping-cart'],
-            ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'user.vendas', 'icon' => 'chart-bar'],
+            ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'sales', 'icon' => 'chart-bar'],
         ];
 @endphp
 <button data-drawer-target="sidebar" data-drawer-toggle="sidebar" aria-controls="sidebar" type="button"
