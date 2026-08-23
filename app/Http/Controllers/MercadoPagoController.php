@@ -68,6 +68,12 @@ class MercadoPagoController extends Controller
             ]);
         }
 
+        $cart = \App\Models\Cart::where('user_id', $request->user()->id)->first();
+
+        if ($cart) {
+            $cart->clearItems();
+        }
+
         return $order;
     });
 

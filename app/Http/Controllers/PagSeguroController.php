@@ -89,6 +89,11 @@ class PagSeguroController extends Controller
                 ]);
             }
 
+            $cart = \App\Models\Cart::where('user_id', $request->user()->id)->first();
+            if ($cart) {
+                $cart->clearItems();
+            }
+
             $pay_link = data_get($response->json(), 'links.1.href');
             return redirect()->away($pay_link);
         }

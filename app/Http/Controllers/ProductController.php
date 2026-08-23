@@ -83,6 +83,7 @@ class ProductController extends Controller
 
         return view('inicio', compact('products', 'filters'));
     }
+    
     public function manage()
     {
         $isAdmin = auth()->user()->role === 'admin';

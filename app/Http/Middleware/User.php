@@ -15,7 +15,7 @@ class User
             if (Auth::user()->role == 'user') {
                 return $next($request);
             }
-            return redirect()->route('admin.inicio');
+            return redirect()->route('inicio');
         }
         return redirect()->route('login');
     }

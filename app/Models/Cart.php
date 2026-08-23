@@ -27,4 +27,9 @@ class Cart extends Model
     {
         return $this->items->sum('total');
     }
+
+     public function clearItems(): void
+    {
+        $this->items()->delete();
+    }
 }

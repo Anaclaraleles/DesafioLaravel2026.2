@@ -48,7 +48,6 @@ Route::middleware('auth')->group(function (): void {
             //criação de produtos
             Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
             Route::post('/products/create', [ProductController::class, 'store']);
-            Route::any('/products/search', [ProductController::class, 'search'])->name('user.products.search');
 
             //carrinho de compras
             Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -56,14 +55,13 @@ Route::middleware('auth')->group(function (): void {
             Route::get('/cart/{cartItem}', [CartController::class, 'edit'])->name('cart.update');
             Route::put('/cart/{cartItem}', [CartController::class, 'update']);
             Route::delete('/cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
+            Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
         });
     });
 
     Route::middleware(Admin::class)->group(function (): void {
         Route::prefix('admin')->group(function (): void {
             Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
-
-            Route::any('/products/search', [ProductController::class, 'search'])->name('admin.products.search');
             
             //gerenciamento de admins
             Route::get('/admins', [ManagerController::class, 'index'])->name('admins');
@@ -79,6 +77,7 @@ Route::middleware('auth')->group(function (): void {
     Route::get('/inicio', [ProductController::class, 'index'])->name('inicio');
 
     //produtos
+    Route::any('/products/search', [ProductController::class, 'search'])->name('products.search');
     Route::get('/products/manage', [ProductController::class, 'manage'])->name('products.manage');
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}/edit', [ProductController::class, 'update']);

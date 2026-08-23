@@ -87,4 +87,15 @@ class CartController extends Controller
             ->route('cart.index')
             ->with('success', 'Item removido do carrinho.');
     }
+
+    public function clear()
+    {
+        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
+
+        $cart->clearItems();
+
+        return redirect()
+            ->route('cart.index')
+            ->with('success', 'Carrinho esvaziado.');
+    }
 }
