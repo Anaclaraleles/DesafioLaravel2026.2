@@ -34,7 +34,7 @@
                             <label class="text-sm font-medium text-gray-700">Email</label>
                             <div class="flex items-center gap-2 bg-green-50 border border-[#4CAF50] rounded-lg px-3 py-2 mt-1">
                                 <x-heroicon-o-envelope class="w-6 h-6 text-green-600" />
-                                <input class="bg-transparent outline-none w-full text-sm" name="email" type="email" placeholder="Digite seu email" value="{{ old('email') }}" />
+                                <input class="bg-transparent outline-none border-none w-full text-sm" name="email" type="email" placeholder="Digite seu email" value="{{ old('email') }}" />
                             </div>
                             @error('email')
                                 <div class="text-sm text-red-500 mt-1">{{ $message }}</div>
@@ -45,7 +45,7 @@
                             <label class="text-sm font-medium text-gray-700">Senha</label>
                             <div class="flex items-center gap-2 bg-green-50 border border-[#4CAF50] rounded-lg px-3 py-2 mt-1">
                                 <x-heroicon-o-lock-closed class="w-6 h-6 text-green-600" />
-                                <input class="bg-transparent outline-none w-full text-sm" type="password" name="password" placeholder="Digite sua senha" id="password-field" />
+                                <input class="bg-transparent outline-none  border-none w-full text-sm" type="password" name="password" placeholder="Digite sua senha" id="password-field" />
                             </div>
                             @error('password')
                                 <div class="text-sm text-red-500 mt-1">{{ $message }}</div>
