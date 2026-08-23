@@ -8,21 +8,26 @@ use App\Mail\Contact;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('contact');
+        $user = $request->filled('user_id')
+            ? \App\Models\User::findOrFail($request->query('user_id'))
+            : null;
+
+        return view('contact', compact('user'));
     }
 
     public function store(Request $request){
-        // $recipientEmail = $request->input('recipient_email'); 
-        // $recipientName = $request->input('recipient_user');
+        $recipientEmail = $request->input('recipient_email'); 
+        $recipientName = $request->input('recipient_user');
         
-        $sent = Mail::to('ana@gmail.com', 'ana')->send(new Contact([
-                'fromName' => $request->input('name'),
-                'fromEmail' => $request->input('email'),
-                'subject' => $request->input('subject'),
-                'message' => $request->input('message'),
-            ]));
-        var_dump('email sent', $sent);
+        Mail::to($recipientEmail, $recipientName)->send(new Contact([
+            'fromName'  => auth()->user()->name,
+            'fromEmail' => auth()->user()->email,
+            'subject'   => $request->input('subject'),
+            'message'   => $request->input('text'),
+        ]));
+        
+        return back()->with('success', 'Email enviado com sucesso!');
     } 
 }

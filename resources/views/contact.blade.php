@@ -3,24 +3,17 @@
 <form action="{{ route('contact.store') }}" method="POST" class="max-w-md mx-auto bg-white p-6 rounded-xl shadow">
     @csrf
 
-    {{-- Nome --}}
-    <div class="mb-4">
-        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
-        <input type="text" name="name" id="name" value="{{ old('name') }}"
-               class="w-full border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]" />
-        @error('name')
-            <span class="text-xs text-red-500">{{ $message }}</span>
-        @enderror
-    </div>
+    @if (session('success'))
+        <div class="mb-4 text-sm text-green-600 bg-green-50 border border-green-200 rounded-md px-3 py-2">
+            {{ session('success') }}
+        </div>
+    @endif
 
-    {{-- Email --}}
-    <div class="mb-4">
-        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-        <input type="email" name="email" id="email" value="{{ old('email') }}"
-               class="w-full border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]" />
-        @error('email')
-            <span class="text-xs text-red-500">{{ $message }}</span>
-        @enderror
+    <input type="hidden" name="recipient_email" value="{{ $user->email }}">
+    <input type="hidden" name="recipient_user" value="{{ $user->name }}">
+
+    <div class="mb-4 text-sm text-gray-600 bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
+        Enviando para: <strong>{{ $user->name }}</strong> ({{ $user->email }})
     </div>
 
     {{-- Assunto --}}
@@ -43,11 +36,9 @@
         @enderror
     </div>
 
-    {{-- Botão --}}
     <button type="submit"
             class="w-full bg-[#4E6E6E] hover:bg-[#3a5555] text-white font-medium px-5 py-3 rounded-lg transition cursor-pointer">
         Enviar
     </button>
-
 </form>
 </x-layouts.app>

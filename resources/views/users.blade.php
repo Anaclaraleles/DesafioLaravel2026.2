@@ -49,9 +49,16 @@
                             <td class="px-6 py-4 text-center text-sm text-gray-500">{{ \Carbon\Carbon::parse($user->birth_date)->format('d/m/Y') }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center justify-center gap-3">
+                                     @if (auth()->user()->role === 'admin')
+                                        <a href="{{ route('contact.index', ['user_id' => $user->id]) }}" class="text-blue-500 hover:text-blue-700 cursor-pointer" title="Enviar email">
+                                            <x-heroicon-o-envelope class="w-5 h-5" />
+                                        </a>
+                                    @endif
+
                                     <button type="button" @click="editingUserId = {{ $user->id }}" class="text-yellow-500 hover:text-yellow-500 cursor-pointer" title="Editar">
                                         <x-heroicon-o-pencil-square class="w-5 h-5" />
                                     </button>
+
                                     <form action="{{ route('user.destroy', $user) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
                                         @csrf
                                         @method('DELETE')
