@@ -30,4 +30,31 @@ class StoreProductRequest extends FormRequest
             'photo' => ['required','image', 'max:2048'],
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'O nome do produto é obrigatório.',
+            'name.string' => 'O nome do produto deve ser um texto.',
+            'name.min' => 'O nome do produto deve ter no mínimo 3 caracteres.',
+            'name.max' => 'O nome do produto deve ter no máximo 150 caracteres.',
+
+            'description.required' => 'A descrição do produto é obrigatória.',
+            'description.string' => 'A descrição do produto deve ser um texto.',
+
+            'category.required' => 'A categoria do produto é obrigatória.',
+            'category.string' => 'A categoria deve ser um texto.',
+            'category.max' => 'A categoria deve ter no máximo 100 caracteres.',
+
+            'price.required' => 'O preço do produto é obrigatório.',
+            'price.numeric' => 'O preço deve ser um número.',
+            'price.min' => 'O preço não pode ser negativo.',
+
+            'quantity.required' => 'A quantidade do produto é obrigatória.',
+            'quantity.min' => 'A quantidade não pode ser negativa.',
+
+            'photo.required' => 'A foto do produto é obrigatória.',
+            'photo.image' => 'O arquivo enviado deve ser uma imagem.',
+            'photo.max' => 'A foto deve ter no máximo 2 MB.',
+        ];
+    }
 }

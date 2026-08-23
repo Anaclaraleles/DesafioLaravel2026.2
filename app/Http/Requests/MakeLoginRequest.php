@@ -42,4 +42,13 @@ class MakeLoginRequest extends FormRequest
 
         return false;
     }
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'O e-mail é obrigatório.',
+            'email.email' => 'Digite um e-mail válido.',
+
+            'password.required' => 'A senha é obrigatória.',
+        ];
+    }
 }

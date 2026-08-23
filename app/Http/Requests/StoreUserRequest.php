@@ -41,4 +41,69 @@ class StoreUserRequest extends FormRequest
             'complement' => ['nullable', 'string', 'max:100'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+
+            'name.required' => 'O nome é obrigatório.',
+            'name.string' => 'O nome deve ser um texto.',
+            'name.min' => 'O nome deve ter no mínimo 3 caracteres.',
+            'name.max' => 'O nome deve ter no máximo 150 caracteres.',
+
+            'email.required' => 'O e-mail é obrigatório.',
+            'email.string' => 'O e-mail deve ser um texto.',
+            'email.email' => 'Digite um e-mail válido.',
+            'email.max' => 'O e-mail deve ter no máximo 150 caracteres.',
+
+            'password.required' => 'A senha é obrigatória.',
+            'password.string' => 'A senha deve ser um texto.',
+            'password.min' => 'A senha deve ter no mínimo 8 caracteres.',
+            'password.confirmed' => 'A confirmação da senha não corresponde.',
+
+            'cpf.required' => 'O CPF é obrigatório.',
+            'cpf.string' => 'O CPF deve ser um texto.',
+            'cpf.size' => 'O CPF deve ter exatamente 11 caracteres.',
+
+            'phone.required' => 'O telefone é obrigatório.',
+            'phone.string' => 'O telefone deve ser um texto.',
+            'phone.max' => 'O telefone deve ter no máximo 20 caracteres.',
+
+            'birth_date.required' => 'A data de nascimento é obrigatória.',
+            'birth_date.date' => 'A data de nascimento deve ser uma data válida.',
+            'birth_date.before' => 'A data de nascimento deve ser anterior à data de hoje.',
+
+            'balance.numeric' => 'O saldo deve ser um número.',
+            'balance.min' => 'O saldo não pode ser negativo.',
+
+            'photo.image' => 'O arquivo enviado deve ser uma imagem.',
+            'photo.max' => 'A foto deve ter no máximo 2 MB.',
+
+            'cep.required' => 'O CEP é obrigatório.',
+            'cep.string' => 'O CEP deve ser um texto.',
+            'cep.size' => 'O CEP deve ter exatamente 8 caracteres.',
+
+            'street.required' => 'A rua é obrigatória.',
+            'street.string' => 'A rua deve ser um texto.',
+            'street.max' => 'A rua deve ter no máximo 150 caracteres.',
+
+            'number.required' => 'O número é obrigatório.',
+            'number.string' => 'O número deve ser um texto.',
+            'number.max' => 'O número deve ter no máximo 10 caracteres.',
+
+            'neighborhood.required' => 'O bairro é obrigatório.',
+            'neighborhood.string' => 'O bairro deve ser um texto.',
+            'neighborhood.max' => 'O bairro deve ter no máximo 100 caracteres.',
+
+            'city.required' => 'A cidade é obrigatória.',
+            'city.string' => 'A cidade deve ser um texto.',
+            'city.max' => 'A cidade deve ter no máximo 100 caracteres.',
+
+            'state.required' => 'O estado é obrigatório.',
+            'state.string' => 'O estado deve ser um texto.',
+            'state.size' => 'O estado deve ter exatamente 2 caracteres.',
+
+            'complement.max' => 'O complemento deve ter no máximo 100 caracteres.',
+        ];
+    }
 }

@@ -24,7 +24,7 @@ class LoginController extends Controller
             return to_route('inicio');
         }
 
-        return back()->with(['message' => 'Não deu certo!!']);
+        return back()->with(['message' => 'Email ou senha incorretos!']);
     }
 
     public function logout(Request $request)
