@@ -108,8 +108,6 @@ class MercadoPagoController extends Controller
         ]);
     }
 
-    // $order->update(['preference_id' => $preference->id]);
-
     return redirect($preference->init_point);
 }
 

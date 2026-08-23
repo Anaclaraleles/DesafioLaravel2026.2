@@ -14,7 +14,7 @@ class ContactController extends Controller
             ? \App\Models\User::findOrFail($request->query('user_id'))
             : null;
 
-        return view('contact', compact('user'));
+        return view('admin.contact', compact('user'));
     }
 
     public function store(Request $request){

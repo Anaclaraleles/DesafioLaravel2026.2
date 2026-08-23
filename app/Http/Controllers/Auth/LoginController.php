@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-use App\Http\Requests\MakeLoginRequest;
+use App\Http\Requests\Auth\MakeLoginRequest;
 
 class LoginController extends Controller
 {

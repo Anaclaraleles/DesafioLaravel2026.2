@@ -18,7 +18,7 @@ class OrderController extends Controller
             ->latest()
             ->paginate(5);
  
-        return view('historicoCompras', compact('orders'));
+        return view('user.historicoCompras', compact('orders'));
     }
 
     public function downloadPdf(): Response
