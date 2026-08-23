@@ -12,7 +12,7 @@
         : [
             ['key' => 'inicio', 'label' => 'Início', 'route' => 'user.inicio', 'icon' => 'home'],
             ['key' => 'carrinho', 'label' => 'Carrinho', 'route' => 'cart.index', 'icon' => 'shopping-cart'],
-            ['key' => 'usuarios', 'label' => 'Gerenciar Perfil', 'route' => 'usuarios', 'icon' => 'users'],
+            ['key' => 'usuarios', 'label' => 'Gerenciar Perfil', 'route' => 'usuarios', 'icon' => 'user'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],
             ['key' => 'compras', 'label' => 'Histórico de compras', 'route' => 'orders', 'icon' => 'clipboard-document-list'],
             ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'sales', 'icon' => 'arrow-trending-up'],
@@ -29,7 +29,7 @@
     <div class="h-full flex flex-col bg-[#4E6E6E] text-white">
         
         <div class="flex flex-col items-center py-6 border-b border-white/20">
-            <span class="font-semibold text-sm truncate max-w-[180px] text-center">Bem-vindo(a), {{ auth()->user()->name }}</span>
+            <span class="font-semibold text-sm truncate max-w-[180px] text-center">Bem-vindo(a)!</span>
         </div>
         
         <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">

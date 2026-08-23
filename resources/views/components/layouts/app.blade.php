@@ -13,9 +13,13 @@
 
     <x-sidebar :active="$active" />
 
-    <main class="ml-0 sm:ml-64 p-4 sm:p-8">
-        {{ $slot }}
-    </main>
+    <div class="sm:ml-64 flex flex-col min-h-screen">
+        <x-navbar />
+
+        <main class="flex-1 p-6">
+            {{ $slot }}
+        </main>
+    </div>
 
 </body>
 </html>
