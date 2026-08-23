@@ -18,7 +18,7 @@
             @unless (auth()->user()->role === 'user')
                 <button type="button"
                     @click="showCreateModal = true"
-                    class="inline-flex items-center gap-2 bg-[#4E6E6E] hover:bg-[#3a5555] text-white font-medium px-5 py-3 rounded-lg transition cursor-pointer">
+                    class="inline-flex items-center gap-2 bg-[#52BA56] hover:bg-[#3a5555] text-white font-medium px-5 py-3 rounded-lg transition cursor-pointer">
                     <x-heroicon-o-plus class="w-5 h-5" />
                     Adicionar Usuário
                 </button>

@@ -1,4 +1,4 @@
-<div class="bg-[#f1f1f1] rounded-2xl shadow-xl w-full max-w-md overflow-hidden"
+<div class="bg-[#f1f1f1] rounded-xl shadow-xl w-full max-w-md overflow-hidden"
      @click.outside="showCreateModal = false">
 
     <div class="flex items-center justify-between bg-[#C7D6D4] px-6 py-4">
@@ -80,8 +80,8 @@
 
             {{-- Botões --}}
             <div class="flex justify-center gap-4 mt-8">
-                <button type="button" @click="showCreateModal = false" class="px-8 py-3 border-1 rounded-lg bg-[#C7D6D4] text-[#3a5555] font-medium hover:bg-[#b7c9c6] transition cursor-pointer shadow-lg shadow-[#4E6E6E]">Cancelar</button>
-                <button type="submit" class="px-8 py-3 rounded-lg bg-[#4E6E6E] text-white font-medium hover:opacity-90 transition cursor-pointer shadow-lg shadow-[#4E6E6E]">Salvar</button>
+                <button type="button" @click="showCreateModal = false" class="px-8 py-3 border-1 rounded-md bg-[#C7D6D4] text-[#3a5555] font-medium hover:bg-[#b7c9c6] transition cursor-pointer shadow-lg shadow-[#4E6E6E]">Cancelar</button>
+                <button type="submit" class="px-8 py-3 rounded-md bg-[#4E6E6E] text-white font-medium hover:opacity-90 transition cursor-pointer shadow-lg shadow-[#4E6E6E]">Salvar</button>
             </div>
 
         </form>
