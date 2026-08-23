@@ -7,8 +7,12 @@
 
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
             <div>
-                <h1 class="text-3xl font-bold text-[#4E6E6E]">Usuários</h1>
-                <p class="text-sm text-[#8FA6A3]">{{ $users->total() }} usuários encontrados</p>
+                @if (auth()->user()->role === 'admin')
+                    <h1 class="text-3xl font-bold text-[#4E6E6E]">Usuários</h1>
+                    <p class="text-sm text-[#8FA6A3]">{{ $users->total() }} usuários encontrados</p>
+                @else
+                    <h1 class="text-3xl font-bold text-[#4E6E6E]">Meu Perfil</h1>
+                @endif
             </div>
 
             @unless (auth()->user()->role === 'user')
@@ -20,12 +24,6 @@
                 </button>
             @endunless
         </div>
-
-        <!-- <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-            <div class="flex-1">
-                <x-search-bar route="admin.products.search" placeholder="Buscar produtos..." />
-            </div>
-        </div> -->
 
         <div class="bg-white rounded-xl shadow overflow-hidden">
             <table class="min-w-full">
