@@ -61,7 +61,7 @@ class PagSeguroController extends Controller
             $order = Order::create([
                 'buyer_id' => $request->user()->id,
                 'total' => $total,
-                'status' => 'pending',
+                'status' => 'paid',
                 'reference_id' => $referenceId,
             ]);
 

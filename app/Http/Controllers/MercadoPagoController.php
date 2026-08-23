@@ -48,7 +48,7 @@ class MercadoPagoController extends Controller
         $order = Order::create([
             'buyer_id' => $request->user()->id,
             'total' => $total,
-            'status' => 'pending',
+            'status' => 'paid',
             'reference_id' => $externalReference,
         ]);
 
