@@ -80,6 +80,13 @@
             {{ $products->links() }}
         </div>
 
+        @if (auth()->user()->role === 'admin')
+            <div class="mt-8">
+                {!! $chart->renderHtml() !!}
+                {!! $chart->renderJs() !!}
+            </div>
+        @endif
+
         {{-- Modal de criação de produto --}}
         <div x-show="showCreateModal" x-cloak x-transition.opacity class="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
             <x-product-create-modal />

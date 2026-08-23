@@ -19,7 +19,7 @@ class CartController extends Controller
     public function index(): View
     {
         $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
-        return view('cart.index', compact('cart'));
+        return view('cart', compact('cart'));
     }
 
     /**

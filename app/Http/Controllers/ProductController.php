@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class ProductController extends Controller
 {
@@ -92,7 +93,21 @@ class ProductController extends Controller
             ? Product::paginate(5)
             : Product::where('user_id', auth()->id())->paginate(5);
 
-        return view('products.manage-products', compact('products'));
+        //grafico de rodutos cadastrados por mes
+        $chart_options = [
+            'chart_title' => 'Quantidade de Produtos Cadastrados por Mês',
+            'model'       => Product::class,
+            'chart_type'  => 'bar',
+            'report_type' => 'group_by_date',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'month',
+            'chart_color' => '82,186,86',
+            'date_format' => 'm/Y',
+        ];
+ 
+        $chart = new LaravelChart($chart_options);
+ 
+        return view('products.manage-products', compact('products', 'chart'));
     }
 
     public function detail($id)
