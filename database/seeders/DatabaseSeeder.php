@@ -5,7 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Address;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,23 +19,33 @@ use Illuminate\Support\Facades\Hash;
         {
         
             User::factory()->create([
-                'name' => 'Test User',
-                'email' => 'test@example.com',
+                'name' => 'Admin',
+                'email' => 'admin@example.com',
                 'cpf' => '12345678900',
                 'password' => Hash::make('password'),
                 'role' => 'admin', 
             ]);
             User::factory()->create([
-                'name' => 'User',
-                'email' => 'user@example.com',
+                'name' => 'User1',
+                'email' => 'user1@example.com',
                 'cpf' => '00987654321',
                 'password' => Hash::make('123'),
                 'role' => 'user', 
             ]);
-
-            Product::factory(7)->create();
+            User::factory()->create([
+                'name' => 'User2',
+                'email' => 'user2@example.com',
+                'cpf' => '67854321312',
+                'password' => Hash::make('123'),
+                'role' => 'user', 
+            ]);
+            Product::factory(15)->create();
 
             Address::factory()->create(['user_id' => 1]);
             Address::factory()->create(['user_id' => 2]);
+            Address::factory()->create(['user_id' => 3]);
+
+            Order::factory(5)->create();
+            OrderItem::factory(8)->create();
         }
 }

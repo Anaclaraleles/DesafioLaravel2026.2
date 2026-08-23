@@ -19,7 +19,7 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => fake()->randomElement([2, 3]),
             'name' => fake()->words(3, true),
             'description' => fake()->paragraph(),
             'category' => fake()->randomElement([
@@ -27,7 +27,14 @@ class ProductFactory extends Factory
             ]),
             'price' => fake()->randomFloat(2, 10, 1000),
             'quantity' => fake()->numberBetween(0, 100),
-            'photo' => fake()->imageUrl(640, 480, 'products', true),
+            'photo' => 'images/' . fake()->randomElement([
+                            'Produto1.webp',
+                            'Produto2.webp',
+                            'Produto3.webp',
+                            'Produto4.webp',
+                            'Produto5.webp',
+                        ]),
+            'created_at' => fake()->dateTimeBetween('-12 months', 'now'),
         ];
     }
 }
