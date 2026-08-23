@@ -13,7 +13,7 @@
             ['key' => 'inicio', 'label' => 'Início', 'route' => 'user.inicio', 'icon' => 'home'],
             ['key' => 'usuarios', 'label' => 'Gerenciar Usuários', 'route' => 'usuarios', 'icon' => 'users'],
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],
-            ['key' => 'compras', 'label' => 'Histórico de compras', 'route' => 'user.compras', 'icon' => 'shopping-cart'],
+            ['key' => 'compras', 'label' => 'Histórico de compras', 'route' => 'orders', 'icon' => 'shopping-cart'],
             ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'user.vendas', 'icon' => 'chart-bar'],
         ];
 @endphp

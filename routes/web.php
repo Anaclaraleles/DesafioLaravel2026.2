@@ -11,6 +11,7 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PagSeguroController;
 use App\Http\Controllers\MercadoPagoController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\User;
@@ -98,4 +99,7 @@ Route::middleware('auth')->group(function (): void {
     Route::get('/erroDePagamento', function () {return view('erroPagamento');})->name('erroPagamento');
 
     Route::post('/checkout/mercadopago', [MercadoPagoController::class, 'process'])->name('mercadopago.process');
+
+    Route::get('/pedidos', [OrderController::class, 'index'])->name('orders');
+    Route::get('/pedidos/pdf', [OrderController::class, 'downloadPdf'])->name('orders.pdf');
 });
