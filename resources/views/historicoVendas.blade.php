@@ -42,7 +42,7 @@
                         <tr class="hover:bg-gray-50 transition">
                             <td class="px-6 py-4 text-center text-sm text-gray-500">#{{ $sale->order_id }}</td>
                             <td class="px-6 py-4 text-center text-sm text-gray-500">
-                                {{ $sale->order->created_at->format('d/m/Y') }}
+                                {{ formatDate($sale->order->created_at) }}
                             </td>
                             <td class="px-6 py-4 text-center text-sm text-gray-700">
                                 {{ $sale->product->name}}
@@ -52,7 +52,7 @@
                                 {{ $sale->seller->name ?? '—' }}
                             </td>
                             <td class="px-6 py-4 text-center text-sm font-semibold text-green-600">
-                                R$ {{ number_format($sale->sub_total, 2, ',', '.') }}
+                                R$ {{ formatPrice($sale->product->price) }}
                             </td>
                             <td class="px-6 py-4 text-center">
                                 @php

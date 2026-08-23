@@ -31,7 +31,7 @@
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-6 py-4 text-center text-sm text-gray-500">#{{ $order->id }}</td>
                                 <td class="px-6 py-4 text-center text-sm text-gray-500">
-                                    {{ $order->created_at->format('d/m/Y') }}
+                                    {{ formatDate($order->created_at) }}
                                 </td>
                                 <td class="px-6 py-4 text-center text-sm text-gray-700">
                                     <ul class="space-y-1">
@@ -44,7 +44,7 @@
                                     </ul>
                                 </td>
                                 <td class="px-6 py-4 text-center text-sm font-semibold text-green-600">
-                                    R$ {{ number_format($order->total, 2, ',', '.') }}
+                                    R$ {{ formatPrice($order->total) }}
                                 </td>
                                 <td class="px-6 py-4 text-center">
                                     @php

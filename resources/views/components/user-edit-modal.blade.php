@@ -11,7 +11,7 @@
 
     <div class="px-6 py-6 overflow-y-auto">
 
-        <form action="{{ route('user.edit', $user) }}" method="post" enctype="multipart/form-data" onsubmit="this.cpf.value = this.cpf.value.replace(/\D/g,'')">
+        <form action="{{ route('user.edit', $user) }}" method="post" enctype="multipart/form-data" onsubmit="this.cpf.value = this.cpf.value.replace(/\D/g,''); this.phone.value = this.phone.value.replace(/\D/g,''); this.cep.value = this.cep.value.replace(/\D/g,'')">
             @csrf
             @method('put')
             <input type="hidden" name="_editing_user_id" value="{{ $user->id }}">
@@ -60,7 +60,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         CPF<span class="text-red-500">*</span>
                     </label>
-                    <input name="cpf" value="{{ old('cpf', $user->cpf) }}" maxlength="14" oninput="this.value=this.value.replace(/\D/g,'').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2')" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                    <input name="cpf" value="{{ formatCpf($user->cpf) }}" maxlength="14" oninput="this.value=this.value.replace(/\D/g,'').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2')" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                     @error('cpf')
                         <span class="text-xs text-red-500">{{ $message }}</span>
                     @enderror
@@ -103,7 +103,7 @@
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Telefone</label>
-                    <input name="phone" value="{{ old('phone', $user->phone) }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
+                    <input name="phone" value="{{ formatPhone($user->phone) }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]"/>
                     @error('phone')
                         <span class="text-xs text-red-500">{{ $message }}</span>
                     @enderror
@@ -125,7 +125,7 @@
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                     CEP<span class="text-red-500">*</span>
                 </label>
-                <input name="cep" id="cep-{{ $user->id }}" value="{{ old('cep', $user->addresses->first()?->cep ?? '') }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]" onblur="pesquisacep(this.value, '{{ $user->id }}');"/>
+                <input name="cep" id="cep-{{ $user->id }}" value="{{ old('cep', formatCep($user->addresses->first()?->cep ?? '')) }}" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]" onblur="pesquisacep(this.value, '{{ $user->id }}');"/>
                 @error('cep')
                     <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror

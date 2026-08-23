@@ -44,8 +44,8 @@
                                 <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $user->id }}</td>
                                 <td class="px-6 py-4 text-center text-sm text-gray-700">{{ $user->name }}</td>
                                 <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $user->email }}</td>
-                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $user->cpf) }}</td>
-                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ \Carbon\Carbon::parse($user->birth_date)->format('d/m/Y') }}</td>
+                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ formatCpf($user->cpf) }}</td>
+                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ formatDate($user->birth_date) }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-center gap-3">
                                         @if (auth()->user()->role === 'admin')

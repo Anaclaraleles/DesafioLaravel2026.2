@@ -41,7 +41,7 @@
                                 </td>
                                 <td class="px-6 py-4 text-center text-sm text-gray-700">{{ $product->name }}</td>
                                 <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $product->category }}</td>
-                                <td class="px-6 py-4 text-center text-sm text-gray-700">R$ {{ number_format($product->price, 2, ',', '.') }}</td>
+                                <td class="px-6 py-4 text-center text-sm text-gray-700">R$ {{ formatPrice($product->price) }}</td>
                                 <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $product->user->name }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-center gap-3">

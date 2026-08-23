@@ -40,8 +40,8 @@
                                 <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $admin->id }}</td>
                                 <td class="px-6 py-4 text-center text-sm text-gray-700">{{ $admin->name }}</td>
                                 <td class="px-6 py-4 text-center text-sm text-gray-500">{{ $admin->email }}</td>
-                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $admin->cpf) }}</td>
-                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ \Carbon\Carbon::parse($admin->birth_date)->format('d/m/Y') }}</td>
+                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ formatCpf($admin->cpf) }}</td>
+                                <td class="px-6 py-4 text-center text-sm text-gray-500">{{ formatDate($admin->birth_date) }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-center gap-3">
                                         <button type="button" @click="editingAdminId = {{ $admin->id }}" class="text-yellow-500 hover:text-yellow-500 cursor-pointer" title="Editar">
