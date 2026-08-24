@@ -13,6 +13,7 @@ use App\Http\Controllers\PagSeguroController;
 use App\Http\Controllers\MercadoPagoController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\User;
@@ -56,6 +57,10 @@ Route::middleware('auth')->group(function (): void {
             Route::put('/cart/{cartItem}', [CartController::class, 'update']);
             Route::delete('/cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
             Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
+
+            //mensagens para os users
+            Route::get('/contato', [MessageController::class, 'create'])->name('messages.create');
+            Route::post('/contato', [MessageController::class, 'store'])->name('messages.store');
         });
     });
 
@@ -71,6 +76,15 @@ Route::middleware('auth')->group(function (): void {
             Route::put('/admin/{admin}/edit', [ManagerController::class, 'update']);
             Route::delete('admin/{admin}', [ManagerController::class, 'destroy'])->name('admin.destroy');
 
+            //email
+            Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+            Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+            //gerenciamento de mensagens
+            Route::get('/mensagens', [MessageController::class, 'index'])->name('messages.index');
+            Route::get('/mensagens/{message}/responder', [MessageController::class, 'reply'])->name('messages.reply');
+            Route::post('/mensagens/{message}/responder', [MessageController::class, 'replyStore'])->name('messages.reply.store');
+
         });
     });
 
@@ -83,10 +97,6 @@ Route::middleware('auth')->group(function (): void {
     Route::put('/products/{product}/edit', [ProductController::class, 'update']);
     Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
     Route::get('/product/{id}', [ProductController::class, 'detail'])->name('product.detail');
-
-    //email
-    Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
     //usuarios
     Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios');

@@ -8,6 +8,7 @@
             ['key' => 'produtos', 'label' => 'Gerenciar Produtos', 'route' => 'products.manage', 'icon' => 'cube'],
             ['key' => 'admins', 'label' => 'Gerenciar Admins', 'route' => 'admins', 'icon' => 'shield-check'],
             ['key' => 'vendas', 'label' => 'Histórico de vendas', 'route' => 'sales', 'icon' => 'arrow-trending-up'],
+            ['key' => 'mensagens', 'label' => 'Gerenciar Mensagens', 'route' => 'messages.index', 'icon' => 'envelope'],
         ]
         : [
             ['key' => 'inicio', 'label' => 'Início', 'route' => 'inicio', 'icon' => 'home'],

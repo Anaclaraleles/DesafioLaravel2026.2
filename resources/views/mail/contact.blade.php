@@ -1,2 +1,2 @@
-<h2>Olá Ana Gatinha</h2>
+<h2>Ecotronic</h2>
 <p>{{ $data['message']}}</p>
