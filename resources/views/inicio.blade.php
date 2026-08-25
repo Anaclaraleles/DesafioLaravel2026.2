@@ -10,10 +10,12 @@
                 <select id="category" name="filter[category]" onchange="this.form.submit()"class="appearance-none cursor-pointer bg-[#4CAF50] hover:bg-[#43a047] text-white text-sm font-semibold
                         rounded-full pl-10 pr-9 h-10 min-w-[220px] border-0 focus:outline-none focus:ring-2 focus:ring-[#4CAF50]/50
                         transition-colors">
-                    <option value="" class="text-gray-800">Todas as categorias</option>
-                    <option value="Celular" class="text-gray-800" @selected(request('filter.category') === 'Celular')>Celular</option>
-                    <option value="Caixa de som" class="text-gray-800" @selected(request('filter.category') === 'Caixa de som')>Caixa de som</option>
-                    <option value="Fone de ouvido" class="text-gray-800" @selected(request('filter.category') === 'Fone de ouvido')>Fone de ouvido</option>
+                        <option value="" class="text-gray-800">Todas as categorias</option>
+                   @foreach (config('product.categorias') as $categoria)
+                        <option value="{{ $categoria }}" @selected(request('filter.category') === $categoria)>
+                            {{ $categoria }}
+                        </option>
+                    @endforeach
                 </select>
 
                 <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-white">

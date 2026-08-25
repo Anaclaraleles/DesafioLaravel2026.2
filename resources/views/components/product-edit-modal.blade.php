@@ -53,12 +53,12 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Categoria<span class="text-red-500">*</span></label>
                     <select name="category" class="w-full border border-gray-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#4E6E6E]">
-                        <option value="" disabled>Selecione</option>
-                        <option value="celular" @selected(old('category', $product->category) === 'celular')>Celular</option>
-                        <option value="fone" @selected(old('category', $product->category) === 'fone')>Fone de Ouvido</option>
-                        <option value="carregador" @selected(old('category', $product->category) === 'carregador')>Carregador</option>
-                        <option value="som" @selected(old('category', $product->category) === 'som')>Caixa de som</option>
-                        <option value="outros" @selected(old('category', $product->category) === 'outros')>Outros</option>
+                        <option value="" disabled selected>Selecione</option>
+                        @foreach (config('product.categorias', []) as $categoria)
+                            <option value="{{ $categoria }}" @selected(old('category', $product->category ?? '') === $categoria)>
+                                {{ $categoria }}
+                            </option>
+                        @endforeach
                     </select>
                     @error('category')
                         <span class="text-xs text-red-500">{{ $message }}</span>

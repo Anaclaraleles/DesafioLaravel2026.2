@@ -11,16 +11,20 @@ use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
 
-        $query = $user->role === 'admin'
-        ? Product::query()
-        : Product::where('user_id', '!=', $user->id);
+        $request->validate([
+            'filter.category' => 'nullable|in:' . implode(',', config('product.categorias')),
+        ]);
 
-        if (request()->filled('filter.category')) {
-            $query->where('category', request('filter.category'));
+        $query = $user->role === 'admin'
+            ? Product::query()
+            : Product::where('user_id', '!=', $user->id);
+
+        if ($request->filled('filter.category')) {
+            $query->where('category', $request->input('filter.category'));
         }
 
         $products = $query->paginate(6)->withQueryString();
