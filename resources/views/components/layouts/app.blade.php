@@ -17,6 +17,7 @@
         <x-navbar />
 
         <main class="flex-1 p-6">
+            <x-flash-messages />
             {{ $slot }}
         </main>
     </div>
