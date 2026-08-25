@@ -15,9 +15,15 @@ class ProductController extends Controller
     {
         $user = auth()->user();
 
-        $products = $user->role === 'admin'
-            ? Product::paginate(6)
-            : Product::where('user_id', '!=', $user->id)->paginate(6);
+        $query = $user->role === 'admin'
+        ? Product::query()
+        : Product::where('user_id', '!=', $user->id);
+
+        if (request()->filled('filter.category')) {
+            $query->where('category', request('filter.category'));
+        }
+
+        $products = $query->paginate(6)->withQueryString();
 
         return view('inicio', compact('products'));
     }
