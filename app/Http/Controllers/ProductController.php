@@ -23,9 +23,9 @@ class ProductController extends Controller
             ? Product::query()
             : Product::where('user_id', '!=', $user->id);
 
-        if ($request->filled('filter.category')) {
-            $query->where('category', $request->input('filter.category'));
-        }
+        $query->when($request->filled('filter.category'), function ($q) use ($request) {
+            $q->where('category', $request->input('filter.category'));
+        });
 
         $products = $query->paginate(6)->withQueryString();
 
@@ -85,13 +85,30 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $filters = $request->except('_token');
+        $user = auth()->user();
 
-        $products = Product::where('name', 'LIKE', "%{$request->search}%")
-            ->orWhere('category', 'LIKE', "%{$request->search}%")
-            ->paginate(6);
+        $request->validate([
+            'filter.category' => 'nullable|in:' . implode(',', config('product.categorias')),
+        ]);
 
-        return view('inicio', compact('products', 'filters'));
+        $query = $user->role === 'admin'
+            ? Product::query()
+            : Product::where('user_id', '!=', $user->id);
+
+        $query->when($request->filled('search'), function ($q) use ($request) {
+            $q->where(function ($q) use ($request) {
+                $q->where('name', 'LIKE', "%{$request->search}%")
+                ->orWhere('category', 'LIKE', "%{$request->search}%");
+            });
+        });
+
+        $query->when($request->filled('filter.category'), function ($q) use ($request) {
+            $q->where('category', $request->input('filter.category'));
+        });
+
+        $products = $query->paginate(6)->withQueryString();
+
+        return view('inicio', compact('products'));
     }
     
     public function manage()
