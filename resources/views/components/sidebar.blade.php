@@ -43,11 +43,22 @@
                 </a>
             @endforeach
         </nav>
+
+        @if (!$isAdmin)
+            <div class="px-3 py-4">
+                <a href="{{ route('messages.create') }}"
+                   class="flex justifitems-center gap-3 px-3 py-2 rounded-lg text-sm transition
+                          {{ $active === 'duvidas' ? 'bg-white/20 font-semibold' : 'hover:bg-white/10' }}">
+                    <x-heroicon-o-question-mark-circle class="w-5 h-5 shrink-0" />
+                    <span>Dúvidas</span>
+                </a>
+            </div>
+        @endif
         
         <div class="px-3 py-4 border-t border-white/20">
             <form method="POST" action="{{ route($isAdmin ? 'admin.logout' : 'user.logout') }}">
                 @csrf
-                <button type="submit" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm w-full hover:bg-white/10">
+                <button type="submit" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm w-full hover:bg-white/10 cursor-pointer">
                     <x-heroicon-o-arrow-left-on-rectangle class="w-5 h-5 shrink-0" />
                     <span>Logout</span>
                 </button>
