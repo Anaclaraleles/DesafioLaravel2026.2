@@ -23,7 +23,11 @@ class SalesDataExport implements FromView, ShouldAutoSize
             ->when(! $isAdmin, function ($query) {
                 $query->where('seller_id', Auth::id());
             })
-            ->with(['order.buyer', 'product', 'seller'])
+            ->with([
+                'order.buyer' => fn ($q) => $q->withTrashed(),
+                'product' => fn ($q) => $q->withTrashed(),
+                'seller' => fn ($q) => $q->withTrashed(),
+            ])
             ->latest()
             ->get();
     }

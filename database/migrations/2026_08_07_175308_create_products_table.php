@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('photo', 255);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

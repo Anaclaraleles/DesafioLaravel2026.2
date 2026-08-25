@@ -50,6 +50,11 @@
                             </td>
                             <td class="px-6 py-4 text-center text-sm text-gray-700">
                                 {{ $sale->seller->name ?? '—' }}
+                                @if ($sale->seller?->trashed())
+                                    <span class="inline-block ml-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-500" title="Este usuário foi excluído do sistema">
+                                        Excluído
+                                    </span>
+                                @endif
                             </td>
                             <td class="px-6 py-4 text-center text-sm font-semibold text-green-600">
                                 R$ {{ formatPrice($sale->product->price) }}

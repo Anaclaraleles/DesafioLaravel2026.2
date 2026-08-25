@@ -20,7 +20,11 @@ class SalesController extends Controller
         $sales = OrderItem::query()->when(! $isAdmin, function ($query) {
             $query->where('seller_id', Auth::id());
         })
-        ->with(['order.buyer', 'product'])
+        ->with([
+            'order.buyer' => fn ($q) => $q->withTrashed(),
+            'product' => fn ($q) => $q->withTrashed(),
+            'seller' => fn ($q) => $q->withTrashed(),
+        ])
         ->latest()
         ->paginate(5);
 
@@ -49,7 +53,11 @@ class SalesController extends Controller
             ->when(! $isAdmin, function ($query) {
                 $query->where('seller_id', Auth::id());
             })
-            ->with(['order.buyer', 'product', 'seller'])
+            ->with([
+                'order.buyer' => fn ($q) => $q->withTrashed(),
+                'product' => fn ($q) => $q->withTrashed(),
+                'seller' => fn ($q) => $q->withTrashed(),
+            ])
             ->latest()
             ->get();
 

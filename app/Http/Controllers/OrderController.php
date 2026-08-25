@@ -14,7 +14,9 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::where('buyer_id', Auth::id())
-            ->with('items.product')
+            ->with([
+                'items.product' => fn ($q) => $q->withTrashed(),
+            ])
             ->latest()
             ->paginate(5);
  
@@ -26,7 +28,11 @@ class OrderController extends Controller
          $orderItems = OrderItem::whereHas('order', function ($query) {
                 $query->where('buyer_id', Auth::id());
             })
-            ->with(['order.buyer', 'product', 'seller'])
+            ->with([
+                'order.buyer' => fn ($q) => $q->withTrashed(),
+                'product' => fn ($q) => $q->withTrashed(),
+                'seller' => fn ($q) => $q->withTrashed(),
+            ])
             ->latest()
             ->get();
  

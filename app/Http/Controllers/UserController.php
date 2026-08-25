@@ -85,6 +85,10 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        if ($user->products()->exists()) {
+            return back()->with('error', 'Não é possível excluir este usuário pois ele possui produtos cadastrados.');
+        }
+
         $user->delete();
 
         return to_route('usuarios')->with('message', 'Deletado com sucesso!');
