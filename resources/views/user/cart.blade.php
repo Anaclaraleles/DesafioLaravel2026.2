@@ -99,7 +99,7 @@
                         @csrf    
            
                         <input type="hidden" name="cart_items" value="{{ json_encode($cart->items) }}">
-                        <button type="submit" class="w-full bg-[#4CAF50] cursor-pointer text-white font-semibold text-sm py-2 rounded-lg mb-3">
+                        <button type="submit" class="w-full bg-[#4CAF50] cursor-pointer text-white font-semibold text-sm py-3 px-4 rounded-lg mb-3">
                         @if($cart->items->isEmpty()) disabled @endif    
                             Finalizar compra (Mercado Pago)
                         </button>
@@ -109,7 +109,7 @@
                         @csrf                  
                         @if($cart->items->isEmpty()) disabled @endif
                         <input type="hidden" name="cart_items" value="{{ json_encode($cart->items) }}">
-                        <button type="submit" class="w-full bg-[#4CAF50] cursor-pointer text-white font-semibold text-sm py-2 rounded-lg mb-3">
+                        <button type="submit" class="w-full bg-[#4CAF50] cursor-pointer text-white font-semibold text-sm py-3 rounded-lg mb-3">
                             @if($cart->items->isEmpty()) disabled @endif
                             Finalizar compra (PagSeguro)
                         </button>

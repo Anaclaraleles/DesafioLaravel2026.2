@@ -9,7 +9,7 @@
             <h5 class="text-base text-gray-800 font-medium leading-snug mb-2"> {{ $product->name }} </h5>
         </a>
         <span class="block text-2xl font-semibold text-green-600 mb-4"> R$ {{ number_format($product->price, 2, ',', '.') }} </span>
-            <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center justify-center gap-2">
                 <a href="{{ route('product.detail', $product) }}"
                     class="flex justify-center items-center border-2 w-60 border-[#6B5744] text-[#6B5744] bg-[#6B5744]/15 font-medium rounded-md px-3 p-3 cursor-pointer">Saber mais
                 </a>
