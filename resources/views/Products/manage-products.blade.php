@@ -18,18 +18,16 @@
             @endunless
         </div>
 
-        <div class="bg-white rounded-xl shadow overflow-hidden">
-            <div class="w-full overflow-x-auto md:overflow-x-visible">
-                <table class="w-full min-w-[1000px] md:min-w-0">
+                <x-table-wrapper>
                     <thead class="bg-[#4E6E6E]">
                         <tr>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">ID</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Foto</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Nome</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Categoria</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Preço</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Usuário</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Ações</th>
+                            <x-table-header>ID</x-table-header>
+                            <x-table-header>Foto</x-table-header>
+                            <x-table-header>Nome</x-table-header>
+                            <x-table-header>Categoria</x-table-header>
+                            <x-table-header>Preço</x-table-header>
+                            <x-table-header>Usuário</x-table-header>
+                            <x-table-header>Ações</x-table-header>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
@@ -68,9 +66,7 @@
                             </tr>
                         @endforelse
                     </tbody>
-                </table>
-            </div>
-        </div>
+                </x-table-wrapper>
 
         <div class="mt-8 flex justify-center">
             {{ $products->links() }}

@@ -24,17 +24,15 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow overflow-hidden">
-            <div class="w-full overflow-x-auto md:overflow-x-visible">
-                <table class="w-full min-w-[1000px] md:min-w-0">
+                <x-table-wrapper>
                     <thead class="bg-[#4E6E6E]">
                         <tr>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Pedido</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Data</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Produtos</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Vendido por</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Total</th>
-                            <th class="px-6 py-4 text-center text-xs font-semibold text-white uppercase tracking-wider">Status</th>
+                            <x-table-header>Pedido</x-table-header>
+                            <x-table-header>Data</x-table-header>
+                            <x-table-header>Produtos</x-table-header>
+                            <x-table-header>Vendido por</x-table-header>
+                            <x-table-header>Total</x-table-header>
+                            <x-table-header>Status</x-table-header>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
@@ -83,9 +81,7 @@
                         </tr>
                     @endforelse
                 </tbody>
-                </table>
-            </div>
-        </div>
+            </x-table-wrapper>
 
         <div class="mt-8 flex justify-center">
             {{ $sales->links() }}
